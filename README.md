@@ -1,3 +1,5 @@
+**Русская версия:** [README_RU.md](README_RU.md)
+
 # Linux Mint auto power mode changer
 
 Adds the ability to **automatically change the power mode** in Linux Mint when you plug in or unplug the power source on your laptop.
