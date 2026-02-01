@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-source /etc/power-change.conf
+source /etc/power-mode-auto-changer.conf
 
 STATE=$(cat "$AC_PATH")
 

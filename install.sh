@@ -89,7 +89,7 @@ case "$choice" in
         ;;
 esac
 
-CONFIG=/etc/power-change.conf
+CONFIG=/etc/power-mode-auto-changer.conf
 
 echo
 echo "Saving configuration to $CONFIG..."
@@ -109,15 +109,15 @@ sudo chmod 644 "$CONFIG"
 
 echo "Copying main script..."
 echo "Копируем основной скрипт..."
-sudo cp power-change.sh /usr/local/bin/power-change.sh
-sudo chown root:root /usr/local/bin/power-change.sh
-sudo chmod 755 /usr/local/bin/power-change.sh
+sudo cp power-mode-auto-changer.sh /usr/local/bin/power-mode-auto-changer.sh
+sudo chown root:root /usr/local/bin/power-mode-auto-changer.sh
+sudo chmod 755 /usr/local/bin/power-mode-auto-changer.sh
 
 echo "Copying udev rule..."
 echo "Копируем правило udev..."
-sudo cp power-change.rules /etc/udev/rules.d/99-power-change.rules
-sudo chown root:root /etc/udev/rules.d/99-power-change.rules
-sudo chmod 644 /etc/udev/rules.d/99-power-change.rules
+sudo cp power-mode-auto-changer.rules /etc/udev/rules.d/99-power-mode-auto-changer.rules
+sudo chown root:root /etc/udev/rules.d/99-power-mode-auto-changer.rules
+sudo chmod 644 /etc/udev/rules.d/99-power-mode-auto-changer.rules
 
 echo "Reloading udev rules..."
 echo "Перезагружаем правила udev..."
