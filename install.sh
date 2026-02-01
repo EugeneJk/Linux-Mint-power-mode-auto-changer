@@ -2,6 +2,7 @@
 echo
 echo "========================================"
 echo "         Power mode configuration       "
+echo "       Конфигурация режимов питания     "
 echo "========================================"
 echo
 
@@ -13,11 +14,8 @@ BAT_PS="\033[0;32m"     # зелёный
 BAT_BAL="\033[0;33m"    # жёлтый
 BAT_PERF="\033[0;31m"   # красный
 
-RED="\033[0;31m"
 GREEN_BRIGHT="\033[1;32m"
 GREEN="\033[0;32m"
-YELLOW="\033[0;33m"
-BLUE="\033[0;34m"
 RESET="\033[0m"
 
 # Find path to check AC status
@@ -31,18 +29,21 @@ done)
 # If empty, stop installation
 if [ -z "$AC_PATH" ]; then
     echo "Can't find AC device. Installation stopped."
+    echo "Не возможно найти устройство притания от сети. Установка остановлена."
     exit 1
 fi
 
 echo -e "Please select the power mode when running on ${GREEN_BRIGHT}AC power${RESET}:"
-echo -e "1) ${AC_PS}Power saver${RESET}"
-echo -e "2) ${AC_BAL}Balanced${RESET}"
-echo -e "3) ${AC_PERF}Performance${RESET}"
+echo -e "Пожалуйста, выберите режим питания при ${GREEN_BRIGHT}подключенном блоке питания${RESET}:"
+echo -e "1) ${AC_PS}Power saver - Энергосбережение${RESET}"
+echo -e "2) ${AC_BAL}Balanced - Сбалансированный${RESET}"
+echo -e "3) ${AC_PERF}Performance - Производительность${RESET}"
 echo "Any other input - abort installation"
+echo "Любой другой ввод прервет установку"
 
 echo
 
-read -rp "Enter your choice [1-3]: " choice
+read -rp "[1-3]: " choice
 
 case "$choice" in
     1)
@@ -55,21 +56,22 @@ case "$choice" in
         ON_AC="performance"
         ;;
     *)
-        echo "Invalid choice. Installation aborted."
+        echo "Установка прервана."
         exit 1
         ;;
 esac
 
 echo
 echo -e "Please select the power mode when running on ${GREEN}battery power${RESET}:"
-echo -e "1) ${BAT_PS}Power saver${RESET}"
-echo -e "2) ${BAT_BAL}Balanced${RESET}"
-echo -e "3) ${BAT_PERF}Performance${RESET}"
+echo -e "1) ${BAT_PS}Power saver - Энергосбережение${RESET}"
+echo -e "2) ${BAT_BAL}Balanced - Сбалансированный${RESET}"
+echo -e "3) ${BAT_PERF}Performance - Производительность${RESET}"
 echo "Any other input - abort installation"
+echo "Любой другой ввод прервет установку"
 
 echo
 
-read -rp "Enter your choice [1-3]: " choice
+read -rp "[1-3]: " choice
 
 case "$choice" in
     1)
@@ -82,7 +84,7 @@ case "$choice" in
         ON_BATTERY="performance"
         ;;
     *)
-        echo "Invalid choice. Installation aborted."
+        echo "Установка прервана."
         exit 1
         ;;
 esac
@@ -91,6 +93,7 @@ CONFIG=/etc/power-change.conf
 
 echo
 echo "Saving configuration to $CONFIG..."
+echo "Сохранение настроек в $CONFIG..."
 
 sudo tee "$CONFIG" > /dev/null <<EOF
 # Power change configuration
@@ -105,20 +108,24 @@ sudo chown root:root "$CONFIG"
 sudo chmod 644 "$CONFIG"
 
 echo "Copying main script..."
+echo "Копируем основной скрипт..."
 sudo cp power-change.sh /usr/local/bin/power-change.sh
 sudo chown root:root /usr/local/bin/power-change.sh
 sudo chmod 755 /usr/local/bin/power-change.sh
 
 echo "Copying udev rule..."
+echo "Копируем правило udev..."
 sudo cp power-change.rules /etc/udev/rules.d/99-power-change.rules
 sudo chown root:root /etc/udev/rules.d/99-power-change.rules
 sudo chmod 644 /etc/udev/rules.d/99-power-change.rules
 
 echo "Reloading udev rules..."
+echo "Перезагружаем правила udev..."
 sudo udevadm control --reload
 
 echo
 echo "========================================"
 echo "         Installation completed         "
+echo "           Установка завершена          "
 echo "========================================"
 echo
