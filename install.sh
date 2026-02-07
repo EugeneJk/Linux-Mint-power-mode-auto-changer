@@ -119,9 +119,21 @@ sudo cp power-mode-auto-changer.rules /etc/udev/rules.d/99-power-mode-auto-chang
 sudo chown root:root /etc/udev/rules.d/99-power-mode-auto-changer.rules
 sudo chmod 644 /etc/udev/rules.d/99-power-mode-auto-changer.rules
 
+echo "Copying startup sync service..."
+echo "Копируем сервис синхронизации при старте..."
+sudo cp power-mode-auto-changer.service /etc/systemd/system/power-mode-auto-changer.service
+sudo chown root:root /etc/systemd/system/power-mode-auto-changer.service
+sudo chmod 644 /etc/systemd/system/power-mode-auto-changer.service
+
 echo "Reloading udev rules..."
 echo "Перезагружаем правила udev..."
 sudo udevadm control --reload
+
+echo "Applying services..."
+echo "Применяем сервис..."
+sudo systemctl daemon-reexec
+sudo systemctl enable power-mode-auto-changer.service
+sudo systemctl start power-mode-auto-changer.service
 
 echo
 echo "========================================"
