@@ -1,0 +1,54 @@
+Из под текушего пользователя
+
+gdbus call --session   --dest org.Cinnamon   --object-path /org/Cinnamon   --method org.Cinnamon.ShowOSD   "{'icon': <'battery-symbolic'>, 'label': <'Power Saver'>}"
+gdbus call --session   --dest org.Cinnamon   --object-path /org/Cinnamon   --method org.Cinnamon.ShowOSD   "{'icon': <'ac-adapter-symbolic'>, 'label': <'Performance'>}"
+
+gdbus call --session   --dest org.Cinnamon   --object-path /org/Cinnamon   --method org.Cinnamon.ShowOSD   "{'icon': <'battery-level-50-symbolic'>, 'label': <'Power mode: Performance'>}"
+gdbus call --session   --dest org.Cinnamon   --object-path /org/Cinnamon   --method org.Cinnamon.ShowOSD   "{'icon': <'battery-low-symbolic'>, 'label': <'Power mode: Performance'>}"
+
+
+ACTIVE_USER=$(loginctl list-sessions --no-legend | awk '{print $3}' | head -n1)
+ACTIVE_UID=$(id -u "$ACTIVE_USER")
+
+DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/$ACTIVE_UID/bus"
+
+sudo -u "$ACTIVE_USER" \
+DBUS_SESSION_BUS_ADDRESS=$DBUS_SESSION_BUS_ADDRESS \
+gdbus call --session \
+  --dest org.Cinnamon \
+  --object-path /org/Cinnamon \
+  --method org.Cinnamon.ShowOSD \
+  "{'icon': <'ac-adapter-symbolic'>, 'label': <'AC mode activated'>}"
+
+
+
+notify-send -i battery-level-50-symbolic \
+"Battery level 50%."
+
+
+notify-send -i battery-low-symbolic \
+"Battery level 20%."
+
+---------------------
+
+
+gdbus call --session   --dest org.Cinnamon   --object-path /org/Cinnamon   --method org.Cinnamon.ShowOSD   "{'icon': <'preferences-system-power'>, 'label': <'Power mode: Performance'>}"
+
+
+gdbus call --session   --dest org.Cinnamon   --object-path /org/Cinnamon   --method org.Cinnamon.ShowOSD   "{'icon': <'battery-good-symbolic'>, 'label': <'Power mode: Performance'>}"
+gdbus call --session   --dest org.Cinnamon   --object-path /org/Cinnamon   --method org.Cinnamon.ShowOSD   "{'icon': <'battery-full-symbolic'>, 'label': <'Power mode: Performance'>}"
+gdbus call --session   --dest org.Cinnamon   --object-path /org/Cinnamon   --method org.Cinnamon.ShowOSD   "{'icon': <'battery-level-100-symbolic'>, 'label': <'Power mode: Performance'>}"
+gdbus call --session   --dest org.Cinnamon   --object-path /org/Cinnamon   --method org.Cinnamon.ShowOSD   "{'icon': <'battery-symbolic'>, 'label': <'Power mode: Performance'>}"
+
+
+gdbus call --session   --dest org.Cinnamon   --object-path /org/Cinnamon   --method org.Cinnamon.ShowOSD   "{'icon': <'ac-adapter-symbolic'>, 'label': <'Power mode: Performance'>}"
+gdbus call --session   --dest org.Cinnamon   --object-path /org/Cinnamon   --method org.Cinnamon.ShowOSD   "{'icon': <'ac-adapter'>, 'label': <'Power mode: Performance'>}"
+gdbus call --session   --dest org.Cinnamon   --object-path /org/Cinnamon   --method org.Cinnamon.ShowOSD   "{'icon': <'battery-full-charging-symbolic'>, 'label': <'Power mode: Performance'>}"
+
+gdbus call --session   --dest org.Cinnamon   --object-path /org/Cinnamon   --method org.Cinnamon.ShowOSD   "{'icon': <'system-run-symbolic'>, 'label': <'Power mode: Performance'>}"
+gdbus call --session   --dest org.Cinnamon   --object-path /org/Cinnamon   --method org.Cinnamon.ShowOSD   "{'icon': <'preferences-system-performance'>, 'label': <'Power mode: Performance'>}"
+
+gdbus call --session   --dest org.Cinnamon   --object-path /org/Cinnamon   --method org.Cinnamon.ShowOSD   "{'icon': <'battery-low-symbolic'>, 'label': <'Power mode: Performance'>}"
+gdbus call --session   --dest org.Cinnamon   --object-path /org/Cinnamon   --method org.Cinnamon.ShowOSD   "{'icon': <'weather-clear-night-symbolic'>, 'label': <'Power mode: Performance'>}"
+gdbus call --session   --dest org.Cinnamon   --object-path /org/Cinnamon   --method org.Cinnamon.ShowOSD   "{'icon': <'system-shutdown-symbolic'>, 'label': <'Power mode: Performance'>}"
+
