@@ -1,0 +1,9 @@
+#!/bin/bash
+set -e
+
+systemctl daemon-reload
+udevadm control --reload
+
+systemctl enable power-mode-auto-changer.service
+
+exit 0
