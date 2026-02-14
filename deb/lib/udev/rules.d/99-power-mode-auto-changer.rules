@@ -1,1 +1,1 @@
-SUBSYSTEM=="power_supply", ATTR{type}=="Mains", RUN+="/usr/local/bin/power-mode-auto-changer/switch-power-mode.sh"
+SUBSYSTEM=="power_supply", ATTR{type}=="Mains", RUN+="/usr/local/lib/power-mode-auto-changer/switch-power-mode.sh"
