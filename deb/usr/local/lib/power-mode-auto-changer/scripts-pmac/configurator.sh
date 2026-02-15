@@ -4,8 +4,17 @@ echo "      $CONFIGURATOR_TEXT_HEADER"
 echo "========================================"
 echo
 
+MAIN_CONFIG=/etc/power-mode-auto-changer/config
 CONFIG_DIR=~/.config/power-mode-auto-changer
 CONFIG_FILE_POWER_MODES=power-modes.conf
+
+source "$MAIN_CONFIG"
+
+# If empty, stop installation
+if [ -z "$AC_PATH" ]; then
+    echo "$CONFIGURATOR_TEXT_NO_AC"
+    exit 1
+fi
 
 
 AC_PS="\033[0;33m"      # оранжевый
@@ -19,20 +28,6 @@ BAT_PERF="\033[0;31m"   # красный
 GREEN_BRIGHT="\033[1;32m"
 GREEN="\033[0;32m"
 RESET="\033[0m"
-
-# Find path to check AC status
-AC_PATH=$(for d in /sys/class/power_supply/*; do
-    if [ "$(cat "$d/type" 2>/dev/null)" = "Mains" ]; then
-        echo "$d"
-        break
-    fi
-done)
-
-# If empty, stop installation
-if [ -z "$AC_PATH" ]; then
-    echo "$CONFIGURATOR_TEXT_NO_AC"
-    exit 1
-fi
 
 echo -e "$CONFIGURATOR_TEXT_SELECT_POWER_MODE_ON ${GREEN_BRIGHT}$CONFIGURATOR_TEXT_AC_POWER${RESET}:"
 echo -e "1 - ${AC_PS}$CONFIGURATOR_TEXT_POWER_SAVER${RESET}"
@@ -108,7 +103,6 @@ tee "$CONFIG" > /dev/null <<EOF
 # Power mode change configuration
 # Generated on $(date)
 
-AC_PATH=${AC_PATH}/online
 ON_AC=${ON_AC}
 ON_BATTERY=${ON_BATTERY}
 EOF

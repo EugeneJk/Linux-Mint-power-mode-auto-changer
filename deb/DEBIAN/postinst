@@ -1,6 +1,29 @@
 #!/bin/bash
 set -e
 
+CONFIG_DIR="/etc/power-mode-auto-changer"
+CONFIG_FILE="$CONFIG_DIR/config"
+
+# create directory if it's not exists
+mkdir -p "$CONFIG_DIR"
+
+# Find path to check AC status
+AC_PATH=$(for d in /sys/class/power_supply/*; do
+    if [ "$(cat "$d/type" 2>/dev/null)" = "Mains" ]; then
+        echo "$d/online"
+        break
+    fi
+done)
+
+# create config if it's not exists
+if [ ! -f "$CONFIG_FILE" ]; then
+    cat <<EOF > "$CONFIG_FILE"
+# Power Mode Auto Changer configuration
+
+AC_PATH=$AC_PATH
+EOF
+fi
+
 systemctl daemon-reload
 udevadm control --reload
 

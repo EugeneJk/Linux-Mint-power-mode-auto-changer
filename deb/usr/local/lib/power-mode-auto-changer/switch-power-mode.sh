@@ -1,6 +1,14 @@
 #!/bin/bash
 set -e
 
+MAIN_CONFIG=/etc/power-mode-auto-changer/config
+if [ ! -f "$MAIN_CONFIG" ]; then
+    echo "Config not found: $MAIN_CONFIG"
+    exit 1
+fi
+source "$MAIN_CONFIG"
+
+
 # Определяем активного пользователя (текущий сеанс)
 ACTIVE_USER=$(loginctl list-sessions --no-legend | awk '{print $3}' | head -n1)
 USER_CONFIG="/home/$ACTIVE_USER/.config/power-mode-auto-changer/power-modes.conf"
