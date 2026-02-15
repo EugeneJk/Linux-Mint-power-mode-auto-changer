@@ -1,7 +1,4 @@
 #!/bin/bash
 set -e
 
-systemctl stop power-mode-auto-changer.service || true
-systemctl disable power-mode-auto-changer.service || true
-
 exit 0

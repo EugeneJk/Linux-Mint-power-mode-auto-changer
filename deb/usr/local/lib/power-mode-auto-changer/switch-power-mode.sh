@@ -3,7 +3,6 @@ set -e
 
 MAIN_CONFIG=/etc/power-mode-auto-changer/config
 if [ ! -f "$MAIN_CONFIG" ]; then
-    echo "Config not found: $MAIN_CONFIG"
     exit 1
 fi
 source "$MAIN_CONFIG"
@@ -14,7 +13,6 @@ ACTIVE_USER=$(loginctl list-sessions --no-legend | awk '{print $3}' | head -n1)
 USER_CONFIG="/home/$ACTIVE_USER/.config/power-mode-auto-changer/power-modes.conf"
 
 if [ ! -f "$USER_CONFIG" ]; then
-    echo "Config not found: $USER_CONFIG"
     exit 1
 fi
 source "$USER_CONFIG"

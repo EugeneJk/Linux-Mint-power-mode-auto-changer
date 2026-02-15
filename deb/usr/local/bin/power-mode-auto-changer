@@ -2,15 +2,14 @@
 MAIN_SCRIPTS_DIR="/usr/local/lib/power-mode-auto-changer"
 
 # Extract params
-source "$MAIN_SCRIPTS_DIR/scripts-common/extract-args.sh"
+source "$MAIN_SCRIPTS_DIR/common/extract-args.sh"
 
 # Define lang
-source "$MAIN_SCRIPTS_DIR/scripts-pmac/define-current-lang.sh"
+source "$MAIN_SCRIPTS_DIR/common/define-current-lang.sh"
 
 #connect translations 
-source "$MAIN_SCRIPTS_DIR/scripts-pmac/lang/$LANG_SELECTED.conf"
+source "$MAIN_SCRIPTS_DIR/common/lang/$LANG_SELECTED.conf"
 
-#run configurator 
-source "$MAIN_SCRIPTS_DIR/scripts-pmac/configurator.sh"
-
+#run action 
+source "$MAIN_SCRIPTS_DIR/$CURRENT_ACTION/start.sh"
 

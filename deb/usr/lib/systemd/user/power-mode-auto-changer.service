@@ -1,11 +1,9 @@
 [Unit]
 Description=Sync power mode with current power source
-After=multi-user.target
 
 [Service]
 Type=oneshot
 ExecStart=/usr/local/lib/power-mode-auto-changer/switch-power-mode.sh
-User=root
 
 [Install]
-WantedBy=multi-user.target
+WantedBy=default.target
