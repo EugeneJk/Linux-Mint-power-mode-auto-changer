@@ -40,7 +40,6 @@ for arg in "$@"; do
 done
 
 # --- Validate ---
-
 # больше одного действия — ошибка
 if [ "$ACTION_COUNT" -gt 1 ]; then
     ERROR_TYPE="MULTIPLE_ACTIONS"

@@ -10,6 +10,12 @@ source "$MAIN_SCRIPTS_DIR/common/define-current-lang.sh"
 #connect translations 
 source "$MAIN_SCRIPTS_DIR/common/lang/$LANG_SELECTED.conf"
 
+if [[ -n "$ERROR_TYPE" ]]; then
+    source "$MAIN_SCRIPTS_DIR/error/start.sh"
+    exit 1
+fi
+
 #run action 
 source "$MAIN_SCRIPTS_DIR/$CURRENT_ACTION/start.sh"
 
+exit 0
