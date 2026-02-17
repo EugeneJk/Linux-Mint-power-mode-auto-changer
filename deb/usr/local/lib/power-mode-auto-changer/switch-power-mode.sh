@@ -1,7 +1,10 @@
 #!/bin/bash
 set -e
+MAIN_SCRIPTS_DIR="/usr/local/lib/power-mode-auto-changer"
 
-MAIN_CONFIG=/etc/power-mode-auto-changer/config
+# Add main variables 
+source "$MAIN_SCRIPTS_DIR/common/main-vars.conf"
+
 if [ ! -f "$MAIN_CONFIG" ]; then
     exit 1
 fi

@@ -1,11 +1,17 @@
 #!/bin/bash
 MAIN_SCRIPTS_DIR="/usr/local/lib/power-mode-auto-changer"
 
+# Add main variables 
+source "$MAIN_SCRIPTS_DIR/common/main-vars.conf"
+
 # Extract params
 source "$MAIN_SCRIPTS_DIR/common/extract-args.sh"
 
 # Define lang
 source "$MAIN_SCRIPTS_DIR/common/define-current-lang.sh"
+
+# Connect colors
+source "$MAIN_SCRIPTS_DIR/common/colors.conf"
 
 #connect translations 
 source "$MAIN_SCRIPTS_DIR/common/lang/$LANG_SELECTED.conf"
