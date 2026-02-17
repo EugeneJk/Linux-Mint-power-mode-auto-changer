@@ -7,6 +7,7 @@ echo
 MAIN_CONFIG=/etc/power-mode-auto-changer/config
 CONFIG_DIR=~/.config/power-mode-auto-changer
 CONFIG_FILE_POWER_MODES=power-modes.conf
+USER_SERVICE="power-mode-auto-changer.service"
 
 source "$MAIN_CONFIG"
 
@@ -95,6 +96,34 @@ while true; do
             ;;
     esac
 done
+
+echo
+echo -e "$CONFIGURATOR_TEXT_SELECT_AUTO_SYNC ${GREEN}$CONFIGURATOR_TEXT_SELECT_AUTO_SYNC_ON${RESET}:"
+echo -e "1) ${GREEN_BRIGHT}$CONFIGURATOR_TEXT_AUTO_SYNC_ENABLED${RESET}"
+echo -e "2) ${GREEN}$CONFIGURATOR_TEXT_AUTO_SYNC_DISABLED${RESET}"
+echo -e "q - $CONFIGURATOR_TEXT_EXIT"
+
+while true; do
+    read -rp "[1-3 or q]: " choice
+
+    case "$choice" in
+        1)
+            systemctl --user enable --now "$USER_SERVICE"
+            break
+            ;;
+        2)
+            systemctl --user disable --now "$USER_SERVICE"
+            break
+            ;;
+        q|Q)
+            exit 1
+            ;;
+        *)
+            echo "$CONFIGURATOR_TEXT_INVALID_INPUT"
+            ;;
+    esac
+done
+
 
 mkdir -p $CONFIG_DIR
 CONFIG="$CONFIG_DIR/$CONFIG_FILE_POWER_MODES"

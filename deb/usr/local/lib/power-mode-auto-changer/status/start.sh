@@ -5,7 +5,7 @@ USER_CONFIG=~/.config/power-mode-auto-changer/power-modes.conf
 echo
 echo "$STATUS_TEXT:"
 echo "------------------------------"
-cat $USER_CONFIG
+
 if [ ! -f "$USER_CONFIG" ]; then
     echo "$STATUS_TEXT_APP_NOT_CONFIGURED:";
     echo "  power-mode-auto-changer --configure";
