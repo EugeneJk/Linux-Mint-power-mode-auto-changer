@@ -30,15 +30,29 @@ else
     NOTIFY_ICON="battery-symbolic"
 fi
 
+CURRENT_MODE="$(powerprofilesctl get 2>/dev/null)"
+
+if [[ "${CURRENT_MODE}" == "${POWER_MODE}" ]]; then
+    exit 0
+fi
+
+# #Define current lang
+# source "$MAIN_SCRIPTS_DIR/common/define-current-lang.sh"
+
+#connect translations 
+source "$MAIN_SCRIPTS_DIR/common/lang/$NOTIFY_LANG.conf"
+
+
+
 case "$POWER_MODE" in
     "power-saver")
-        NOTIFY_TEXT="Activated mode: Power saver"
+        NOTIFY_TEXT=$CONFIGURATOR_TEXT_POWER_SAVER
         ;;
     "balanced")
-        NOTIFY_TEXT="Activated mode: Balanced"
+        NOTIFY_TEXT=$CONFIGURATOR_TEXT_BALANCED
         ;;
     "performance")
-        NOTIFY_TEXT="Activated mode: Performance"
+        NOTIFY_TEXT=$CONFIGURATOR_TEXT_PERFORMANCE
         ;;
 esac
 
