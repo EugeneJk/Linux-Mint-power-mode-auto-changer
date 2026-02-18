@@ -6,4 +6,4 @@ Architecture: all
 Maintainer: Eugene Lazarchuk
 Depends: bash, systemd, udev
 Description: Auto power mode switcher for Linux Mint
- Minimal system service with udev integration.
+  Automatically switches power modes in Linux Mint based on AC or battery status, with smart profile detection and desktop notifications.

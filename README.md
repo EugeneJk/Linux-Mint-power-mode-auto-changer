@@ -1,66 +1,68 @@
-<p align="center">
-  <a href="#english">🇬🇧 English</a>
-  &nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;
-  <a href="#русский">🇷🇺 Русский</a>
-</p>
-
-## English
 # Linux Mint power mode auto changer
+
+Full documentation:
+
+🇬🇧 English: https://github.com/EugeneJk/Linux-Mint-power-mode-auto-changer/wiki
+
+🇷🇺 Русский: https://gitflic.ru/project/shadyjk/linux-mint-power-mode-auto-changer/wiki
 
 Adds the ability to **automatically change the power mode** in Linux Mint on laptops depending on the power source state (AC or battery).
 
 The tool monitors power connection events and:
-- automatically switches to a **power-saving (or user-selected) mode** when the laptop is **disconnected from AC power and running on battery**;
-- automatically switches to a **performance (or user-selected) mode** when the laptop is **connected to AC power**.
 
-This helps optimize **battery life**, **performance**, and **power consumption** without manual interaction.
+automatically switches to a **power-saving (or user-selected) mode** when the laptop is **disconnected from AC power and running on battery**;
 
-## Installation / Update Current Settings
-Run the installation script in the terminal:
+automatically switches to a **performance (or user-selected) mode** when the laptop is **connected to AC power**;
 
+shows a **desktop notification** when the power mode is changed (except during system startup);
+
+does **not** switch the power mode if the current profile already matches the required one (for example, after a manual change).
+
+This helps **optimize battery life, performance**, and **power consumption** without manual interaction.
+
+## Installation
+### Recommended — from release package
+1. Download the latest .deb package from the Releases section.
+2. Install it:
+```shellscript
+sudo apt install ./power-mode-auto-changer_<version>.deb
 ```
-./install.sh
+
+### Build from source
+
+Build the .deb package:
+```shellscript
+make build
 ```
-*Note: Do **not** run the script with `sudo`. The script will use `sudo` where necessary.*
+Install it:
+```shellscript
+make install
+```
+Note: Do **not** run `make` with `sudo`. The script will request `sudo` only where required.
+
+## Configuration
+
+After installation, run the configuration script:
+
+```shellscript
+power-mode-auto-changer --configure
+```
+
+You can:
+- select the power profile for **AC mode**;
+- select the power profile for **battery mode**;
+- enable or disable **startup synchronization**;
+- view current **status and configuration**.
+
+Configuration changes take effect immediately.
 
 ## Uninstallation
-Run the uninstallation script in the terminal:
 
+Remove the package:
+```shellscript
+sudo apt remove power-mode-auto-changer
 ```
-./uninstall.sh
-```
+
 ## Prerequisites
-- TLP is **not supported**.
-- The **standard Linux Mint power manager** should be installed on your system.
-  
-<br>
-<p align="center">◆ ◆ ◆</p>
-
-## Русский
-# Автопереключение режимов питания Linux Mint
-
-Добавляет возможность **автоматического переключения режимов питания** в Linux Mint на ноутбуках в зависимости от источника питания (сеть или батарея).
-
-Инструмент отслеживает события подключения питания и:
-- автоматически переключает систему в режим **энергосбережения (или выбранный пользователем)** при **отключении от сети и работе от батареи**;
-- автоматически переключает систему в режим **производительности (или выбранный пользователем)** при **подключении к сети**.
-
-Это позволяет оптимизировать **время работы от батареи**, **производительность** и **энергопотребление** без ручного вмешательства.
-
-## Установка / Обновление настроек
-Запустите скрипт установки в терминале:
-
-```
-./install.sh
-```
-*Примечание: **Не** запускайте скрипт в режиме `sudo`. Скрипт выполнит нужние команды в режиме `sudo` где это необходимо.*
-
-## Удаление
-Запустите скрипт удаления в терминале:
-
-```
-./uninstall.sh
-```
-## Необходимые условия
-- TLP **не поддерживается**.
-- На системе должен быть установлен **стандартный менеджер питания Linux Mint**.
+- **TLP is not supported.**
+- The **standard Linux Mint power manager** must be installed and active.
