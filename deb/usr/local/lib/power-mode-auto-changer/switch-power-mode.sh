@@ -1,9 +1,13 @@
 #!/bin/bash
 set -e
 MAIN_SCRIPTS_DIR="/usr/local/lib/power-mode-auto-changer"
+SCRIPT_DIR="$MAIN_SCRIPTS_DIR/switch-power-mode"
+
 
 # Add main variables 
 source "$MAIN_SCRIPTS_DIR/common/main-vars.conf"
+# Connect user config validator 
+source "$SCRIPT_DIR/user-config-validator.sh"
 
 if [ ! -f "$MAIN_CONFIG" ]; then
     exit 1
@@ -13,13 +17,18 @@ source "$MAIN_CONFIG"
 
 # Определяем активного пользователя (текущий сеанс)
 ACTIVE_USER=$(loginctl list-sessions --no-legend | awk '{print $3}' | head -n1)
+
+# Read user config
 USER_CONFIG="/home/$ACTIVE_USER/.config/power-mode-auto-changer/power-modes.conf"
 
-if [ ! -f "$USER_CONFIG" ]; then
+if ! validate_user_config_file "$ACTIVE_USER" "$USER_CONFIG"; then
     exit 1
 fi
-source "$USER_CONFIG"
 
+source "$SCRIPT_DIR/parse-user-config.sh"
+parse_user_config "$USER_CONFIG"
+
+# Reading AC state
 STATE=$(cat "$AC_PATH")
 
 if [ "$STATE" = "1" ]; then
@@ -36,36 +45,39 @@ if [[ "${CURRENT_MODE}" == "${POWER_MODE}" ]]; then
     exit 0
 fi
 
-# #Define current lang
-# source "$MAIN_SCRIPTS_DIR/common/define-current-lang.sh"
 
 #connect translations 
-source "$MAIN_SCRIPTS_DIR/common/lang/$NOTIFY_LANG.conf"
+LANG_FILE="$MAIN_SCRIPTS_DIR/common/lang/$NOTIFY_LANG.conf"
 
+if [ ! -f "$LANG_FILE" ]; then
+    exit 1
+fi
+source "$LANG_FILE"
 
+USER_TEXT_OVERRIDE_CONF="/home/$ACTIVE_USER/.config/power-mode-auto-changer/lang.conf"
+if validate_user_config_file "$ACTIVE_USER" "$USER_TEXT_OVERRIDE_CONF"; then
+    source "$SCRIPT_DIR/parse-user-text-override-config.sh"
+    parse_user_text_override_config "$USER_TEXT_OVERRIDE_CONF"
+fi
 
 case "$POWER_MODE" in
     "power-saver")
-        NOTIFY_TEXT=$CONFIGURATOR_TEXT_POWER_SAVER
+        NOTIFY_TEXT="${CUSTOM_TEXT_POWER_SAVER:-$CONFIGURATOR_TEXT_POWER_SAVER}"
         ;;
     "balanced")
-        NOTIFY_TEXT=$CONFIGURATOR_TEXT_BALANCED
+        NOTIFY_TEXT="${CUSTOM_TEXT_BALANCED:-$CONFIGURATOR_TEXT_BALANCED}"
         ;;
     "performance")
-        NOTIFY_TEXT=$CONFIGURATOR_TEXT_PERFORMANCE
+        NOTIFY_TEXT="${CUSTOM_TEXT_PERFORMANCE:-$CONFIGURATOR_TEXT_PERFORMANCE}"
+        ;;
+    *)
+        exit 1
         ;;
 esac
 
 powerprofilesctl set "$POWER_MODE"
 
-ACTIVE_UID=$(id -u "$ACTIVE_USER")
+# connect show_notification function
+source "$SCRIPT_DIR/show-notification.sh"
 
-DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/$ACTIVE_UID/bus"
-
-sudo -u "$ACTIVE_USER" \
-DBUS_SESSION_BUS_ADDRESS=$DBUS_SESSION_BUS_ADDRESS \
-gdbus call --session \
-  --dest org.Cinnamon \
-  --object-path /org/Cinnamon \
-  --method org.Cinnamon.ShowOSD \
-  "{'icon': <'$NOTIFY_ICON'>, 'label': <'$NOTIFY_TEXT'>}"
+show_notification "$ACTIVE_USER" "$NOTIFY_ICON" "$NOTIFY_TEXT"
