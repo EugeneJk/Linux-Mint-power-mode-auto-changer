@@ -8,10 +8,30 @@ if [ ! -f "$USER_CONFIG" ]; then
     echo "$STATUS_TEXT_APP_NOT_CONFIGURED:";
     echo "  power-mode-auto-changer --configure";
     echo
-    exit 0
+    exit 1
+fi
+MAIN_SCRIPTS_DIR="/usr/local/lib/power-mode-auto-changer"
+COMMON_DIR="$MAIN_SCRIPTS_DIR/common"
+source "$COMMON_DIR/user-config-validator.sh"
+
+ACTIVE_USER=$(loginctl list-sessions --no-legend | awk '{print $3}' | head -n1)
+
+if validate_user_config_file "$ACTIVE_USER" "$USER_CONFIG"; then
+    echo "$STATUS_TEXT_CONFIG_IS_INVALID"
+    exit 1
 fi
 
-source "$USER_CONFIG"
+source "$COMMON_DIR/parse-user-config.sh"
+parse_user_config "$USER_CONFIG"
+
+USER_TEXT_OVERRIDE_CONF="/home/$ACTIVE_USER/.config/power-mode-auto-changer/lang.conf"
+if validate_user_config_file "$ACTIVE_USER" "$USER_TEXT_OVERRIDE_CONF"; then
+    source "$COMMON_DIR/parse-user-text-override-config.sh"
+    parse_user_text_override_config "$USER_TEXT_OVERRIDE_CONF"
+else
+    echo $STATUS_TEXT_LANGUAGE_OVERRIDE_IS_INVALID;
+    exit 1
+fi
 
 if systemctl --user is-enabled --quiet $USER_SERVICE; then
     START_UP_AUTO_SYNC_STATUS=$STATUS_TEXT_ENABLED

@@ -2,12 +2,13 @@
 set -e
 MAIN_SCRIPTS_DIR="/usr/local/lib/power-mode-auto-changer"
 SCRIPT_DIR="$MAIN_SCRIPTS_DIR/switch-power-mode"
+COMMON_DIR="$MAIN_SCRIPTS_DIR/common"
 
 
 # Add main variables 
-source "$MAIN_SCRIPTS_DIR/common/main-vars.conf"
+source "$COMMON_DIR/main-vars.conf"
 # Connect user config validator 
-source "$SCRIPT_DIR/user-config-validator.sh"
+source "$COMMON_DIR/user-config-validator.sh"
 
 if [ ! -f "$MAIN_CONFIG" ]; then
     exit 1
@@ -19,13 +20,13 @@ source "$MAIN_CONFIG"
 ACTIVE_USER=$(loginctl list-sessions --no-legend | awk '{print $3}' | head -n1)
 
 # Read user config
-USER_CONFIG="/home/$ACTIVE_USER/.config/power-mode-auto-changer/power-modes.conf"
+USER_CONFIG="/home/$ACTIVE_USER/.config/power-mode-auto-changer/$USER_CONFIG_FILE"
 
 if ! validate_user_config_file "$ACTIVE_USER" "$USER_CONFIG"; then
     exit 1
 fi
 
-source "$SCRIPT_DIR/parse-user-config.sh"
+source "$COMMON_DIR/parse-user-config.sh"
 parse_user_config "$USER_CONFIG"
 
 # Reading AC state
@@ -47,7 +48,7 @@ fi
 
 
 #connect translations 
-LANG_FILE="$MAIN_SCRIPTS_DIR/common/lang/$NOTIFY_LANG.conf"
+LANG_FILE="$COMMON_DIR/lang/$NOTIFY_LANG.conf"
 
 if [ ! -f "$LANG_FILE" ]; then
     exit 1
@@ -56,7 +57,7 @@ source "$LANG_FILE"
 
 USER_TEXT_OVERRIDE_CONF="/home/$ACTIVE_USER/.config/power-mode-auto-changer/lang.conf"
 if validate_user_config_file "$ACTIVE_USER" "$USER_TEXT_OVERRIDE_CONF"; then
-    source "$SCRIPT_DIR/parse-user-text-override-config.sh"
+    source "$COMMON_DIR/parse-user-text-override-config.sh"
     parse_user_text_override_config "$USER_TEXT_OVERRIDE_CONF"
 fi
 
