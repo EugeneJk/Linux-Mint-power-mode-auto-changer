@@ -30,7 +30,6 @@ $(TEST_TARGET):
 	mkdir -p $(BUILD_DIR)
 	$(CXX) $(CXXFLAGS) $(TEST_SOURCE) $(COMMON_SOURCES) -o $(BUILD_DIR)/$(TEST_TARGET)
 
-./build/power-mode-auto-switcher-service
 
 clean:
 	rm -rf $(BUILD_DIR)
