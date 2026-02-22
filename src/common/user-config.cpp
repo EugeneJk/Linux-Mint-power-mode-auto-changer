@@ -2,17 +2,7 @@
 #include <string>
 #include <map>
 #include <optional>
-#include <stdexcept>
-#include "../utils/str_trim.hpp"
-
-/* Check uset text for empty */
-std::optional<std::string> checkText(const std::string &value)
-{
-    std::string result = str_trim(value);
-    if (result.empty())
-        return std::nullopt;
-    return result;
-}
+#include "../utils/str-empty-checker.hpp"
 
 /* Get power profile opition*/
 std::optional<PowerProfile> parsePowerProfile(const std::string &value)
@@ -31,8 +21,8 @@ UserConfig parceUserConfig(const std::map<std::string, std::string> &config)
     UserConfig result;
     result.onAc = parsePowerProfile(config.at("ON_AC")).value();
     result.onBat = parsePowerProfile(config.at("ON_BATTERY")).value();
-    result.onAcText = checkText(config.at("ON_AC_TEXT")).value();
-    result.onBatText = checkText(config.at("ON_BATTERY_TEXT")).value();
+    result.onAcText = strEmptyChecker(config.at("ON_AC_TEXT")).value();
+    result.onBatText = strEmptyChecker(config.at("ON_BATTERY_TEXT")).value();
 
     return result;
 }

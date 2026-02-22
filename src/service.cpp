@@ -4,36 +4,57 @@
 #include "common/config-loader.hpp"
 #include "common/constants.hpp"
 #include "common/user-config.hpp"
+#include "common/system-config.hpp"
+#include "service/is-power-plugged.hpp"
+#include "service/show-notification.hpp"
 #include <string>
 #include <map>
 
 int main()
 {
-    std::cout << "Switch power mode service\n";
-
     try
     {
         // get current user info
         UserInfo user = getUser();
-        std::cout << "User: " << user.name << " (uid=" << user.uid << ")\n\n";
         
         // load user config
-        std::string userConfigPath = "/home/" + user.name + "/.config/power-mode-auto-changer/power-modes.conf";
+        std::string userConfigPath = "/home/" + user.name + "/" + USER_CONFIG_REL;
         UserConfig userConfig = parceUserConfig(loadConfig(userConfigPath));
 
-        std::cout << "On ac: " << powerProfileToString(userConfig.onAc) << "\n";
-        std::cout << "On bat: " << powerProfileToString(userConfig.onBat) << "\n";
-        std::cout << "On ac text: " << userConfig.onAcText << "\n";
-        std::cout << "On bat text: " << userConfig.onBatText << "\n\n";
+        // load system config
+        SystemConfig systemConfig = parceSystemConfig(loadConfig(SYSTEM_CONFIG));
 
-        std::cout << "Get current power profile\n";
-        std::cout << "Check with new profile\n";
-        std::cout << "Switch profile if needed\n";
-        std::cout << "Show notification if needed\n";
+        bool isAcOn = isPowerPlugged(systemConfig.acStatusContainer);
+
+        // define profile, icon and message to set and display
+        std::string displayText;
+        std::string newPowerProfile;
+        std::string icon;
+        if(isAcOn) {
+            displayText = userConfig.onAcText;
+            newPowerProfile = powerProfileToString(userConfig.onAc);
+            icon = ON_AC_ICON;
+        } else {
+            displayText = userConfig.onBatText;
+            newPowerProfile = powerProfileToString(userConfig.onBat);
+            icon = ON_BAT_ICON;
+        }
+
+        // Get current profile
+        std::string currentPowerProfile = execCommand("powerprofilesctl get");
+
+        // if new profile is the same as current then do nothing and finish
+        if(currentPowerProfile == newPowerProfile) return 0;
+
+        // set new profile
+        execCommand("powerprofilesctl set " + newPowerProfile);
+        
+        // show notification
+        showNotification(user, icon, displayText);
     }
     catch (const std::exception &ex)
     {
-        std::cerr << "Error: " << ex.what() << "\n";
+        // silent exit with error
         return 1;
     }
     return 0;

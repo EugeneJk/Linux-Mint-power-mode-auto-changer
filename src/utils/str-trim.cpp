@@ -1,9 +1,9 @@
-#include "str_trim.hpp"
+#include "str-trim.hpp"
 #include <algorithm>
 #include <cctype>
 #include <string>
 
-std::string str_trim(std::string s)
+std::string strTrim(std::string s)
 {
     auto notSpace = [](unsigned char ch)
     {

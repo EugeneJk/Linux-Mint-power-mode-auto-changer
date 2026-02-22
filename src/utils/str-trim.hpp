@@ -4,6 +4,6 @@
 #include <string>
 
 /* Trim string utility*/
-std::string str_trim(std::string s);
+std::string strTrim(std::string s);
 
 #endif
