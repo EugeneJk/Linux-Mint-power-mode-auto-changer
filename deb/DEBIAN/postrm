@@ -1,0 +1,13 @@
+#!/bin/bash
+set -e
+
+case "$1" in
+    purge)
+        # удаляем каталог конфигурации если существует
+        if [ -d /etc/power-mode-auto-changer ]; then
+            rm -rf /etc/power-mode-auto-changer
+        fi
+        ;;
+esac
+
+exit 0

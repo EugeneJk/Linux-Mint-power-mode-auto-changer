@@ -54,6 +54,7 @@ int main()
     }
     catch (const std::exception &ex)
     {
+        std::cerr << "Error: " << ex.what() << "\n";
         // silent exit with error
         return 1;
     }
