@@ -1,42 +1,40 @@
 // power_mode_auto_changer_v2.cpp
 
+// #include <cstdio>
 #include <iostream>
-#include <string>
-#include <cstdio>
-#include <memory>
-#include <stdexcept>
-#include <array>
+// #include <string>
+// #include <memory>
+// #include <stdexcept>
+// #include <array>
+#include "cli/parse-args.hpp"
 
-int main(int argc, char* argv[]) {
+int main(int argc, char *argv[])
+{
+    AppParams appParams = parseArgs(argc, argv);
+    try
+    {
+        switch (appParams.action)
+        {
+        case AppAction::Help:
+            std::cout << "Show help";
+            break;
+        case AppAction::Status:
+            std::cout << "Show status";
+            break;
 
-    // Печать аргументов
-    std::cout << "Arguments (" << argc - 1 << "):\n";
-    for (int i = 1; i < argc; ++i) {
-        std::cout << "  argv[" << i << "] = " << argv[i] << "\n";
+        case AppAction::Version:
+            std::cout << "Show version";
+            break;
+
+        case AppAction::InteractiveConfig:
+            std::cout << "Run interactive configuration";
+            break;
+        }
     }
-
-    const char* cmd = "echo \"test\"";
-
-    std::array<char, 256> buffer;
-    std::string result;
-
-    FILE* pipe = popen(cmd, "r");
-    if (!pipe) {
-        std::perror("popen failed");
-        return 1;
+    catch (const std::exception &e)
+    {
+        std::cerr << e.what() << '\n';
     }
-
-    while (fgets(buffer.data(), buffer.size(), pipe) != nullptr) {
-        result += buffer.data();
-    }
-
-    if (pclose(pipe) == -1) {
-        std::perror("pclose failed");
-        return 1;
-    }
-
-    // Печать полностью сформированной строки
-    std::cout << "Command result:\n" << result;
 
     return 0;
 }
