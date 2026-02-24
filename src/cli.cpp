@@ -4,6 +4,7 @@
 #include "common/constants.hpp"
 #include "cli/parse-args.hpp"
 #include "cli/detect-lang.hpp"
+#include "cli/actions/version.hpp"
 #include <libintl.h>
 #define _(String) gettext(String)
 
@@ -31,7 +32,7 @@ int main(int argc, char *argv[])
             break;
 
         case AppAction::Version:
-            std::cout << "Show version";
+            showVersion();
             break;
 
         case AppAction::InteractiveConfig:
