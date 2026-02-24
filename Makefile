@@ -10,15 +10,15 @@ DEB_USR_LOCAL_BIN_DIR = deb/usr/local/bin
 
 SERVICE_TARGET = power-mode-auto-changer-service
 CLI_TARGET = power-mode-auto-changer-cli
-TEST_TARGET = test
 DEB_TARGET = build-deb
+COPY_LANG_TARGET = copy-translaction
 
 COMMON_SOURCES := $(shell find $(SRC_DIR) -mindepth 2 -name "*.cpp")
 SERVICE_SOURCE := $(SRC_DIR)/service.cpp
 CLI_SOURCE := $(SRC_DIR)/cli.cpp
 TEST_SOURCE := $(SRC_DIR)/test.cpp
 
-all: $(SERVICE_TARGET) $(CLI_TARGET) $(TEST_TARGET) $(DEB_TARGET)
+all: $(SERVICE_TARGET) $(CLI_TARGET) $(COPY_LANG_TARGET) $(DEB_TARGET)
 
 $(SERVICE_TARGET):
 	mkdir -p $(BUILD_DIR)
@@ -29,13 +29,13 @@ $(SERVICE_TARGET):
 $(CLI_TARGET):
 	mkdir -p $(BUILD_DIR)
 	$(CXX) $(CXXFLAGS) $(CLI_SOURCE) $(COMMON_SOURCES) -o $(BUILD_DIR)/$(CLI_TARGET)
-
-$(TEST_TARGET):
-	mkdir -p $(BUILD_DIR)
-	$(CXX) $(CXXFLAGS) $(TEST_SOURCE) $(COMMON_SOURCES) -o $(BUILD_DIR)/$(TEST_TARGET)
+	cp $(BUILD_DIR)/$(CLI_TARGET) $(DEB_USR_LOCAL_BIN_DIR)/$(CLI_TARGET)
 
 $(DEB_TARGET):
 	dpkg-deb --build --root-owner-group deb $(BUILD_DIR)/$(PACKAGE)_$(VERSION).deb
+
+$(COPY_LANG_TARGET):
+	cp ./lang/ru.mo  ./deb/usr/share/locale/ru/LC_MESSAGES/${PACKAGE}.mo
 
 install:
 	sudo dpkg -i $(BUILD_DIR)/$(PACKAGE)_$(VERSION).deb

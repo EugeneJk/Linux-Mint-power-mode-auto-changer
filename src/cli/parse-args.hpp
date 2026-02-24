@@ -12,14 +12,8 @@ enum class AppAction
     Version
 };
 
-/*  App params */
-struct AppParams
-{
-    AppAction action;
-    std::string lang;
-};
 
 /* Trim string utility*/
-AppParams parseArgs(int argc, char* argv[]);
+AppAction extractAction(int argc, char* argv[]);
 
 #endif
