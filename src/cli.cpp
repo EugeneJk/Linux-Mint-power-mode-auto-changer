@@ -5,6 +5,9 @@
 #include "cli/parse-args.hpp"
 #include "cli/detect-lang.hpp"
 #include "cli/actions/version.hpp"
+#include "cli/actions/help.hpp"
+#include "cli/actions/status.hpp"
+#include "cli/actions/configure.hpp"
 #include <libintl.h>
 #define _(String) gettext(String)
 
@@ -21,22 +24,19 @@ int main(int argc, char *argv[])
     try
     {
         AppAction action = extractAction(argc, argv);
-        
         switch (action)
         {
         case AppAction::Help:
-            std::cout << "Show help";
+            showHelp();
             break;
         case AppAction::Status:
-            std::cout << "Show status";
+            showStatus();
             break;
-
         case AppAction::Version:
             showVersion();
             break;
-
         case AppAction::InteractiveConfig:
-            std::cout << "Run interactive configuration";
+            runConfiguration();
             break;
         }
     }
