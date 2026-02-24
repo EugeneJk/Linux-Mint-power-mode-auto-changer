@@ -1,11 +1,7 @@
 // power_mode_auto_changer_v2.cpp
 
-// #include <cstdio>
 #include <iostream>
-// #include <string>
-// #include <memory>
-// #include <stdexcept>
-// #include <array>
+#include "common/constants.hpp"
 #include "cli/parse-args.hpp"
 #include "cli/detect-lang.hpp"
 #include <libintl.h>
@@ -18,8 +14,8 @@ int main(int argc, char *argv[])
     unsetenv("LANGUAGE");
     setenv("LC_MESSAGES", language.c_str(), 1);
     setlocale(LC_ALL, "");
-    bindtextdomain("power-mode-auto-changer", "/usr/share/locale");
-    textdomain("power-mode-auto-changer");
+    bindtextdomain(APP_NAME.c_str(), "/usr/share/locale");
+    textdomain(APP_NAME.c_str());
 
     try
     {
