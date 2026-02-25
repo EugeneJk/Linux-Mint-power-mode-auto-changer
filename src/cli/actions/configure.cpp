@@ -1,4 +1,4 @@
-#include "version.hpp"
+#include "configure.hpp"
 #include "../../common/command.hpp"
 #include "../../common/constants.hpp"
 #include <string>

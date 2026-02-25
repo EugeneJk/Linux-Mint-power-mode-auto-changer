@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2026-02-24 18:13-0500\n"
-"PO-Revision-Date: 2026-02-24 18:13-0500\n"
+"POT-Creation-Date: 2026-02-24 20:33-0500\n"
+"PO-Revision-Date: 2026-02-24 20:37-0500\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ru\n"
@@ -13,6 +13,66 @@ msgstr ""
 "X-Poedit-Basepath: ../src\n"
 "X-Poedit-KeywordsList: _\n"
 "X-Poedit-SearchPath-0: .\n"
+
+#: cli/actions/help.cpp:8
+msgid "Power Mode Auto Changer"
+msgstr "Автопереключатель режимов питания"
+
+#: cli/actions/help.cpp:9
+msgid "Usage"
+msgstr "Использование"
+
+#: cli/actions/help.cpp:12
+msgid "Actions"
+msgstr "Действия"
+
+#: cli/actions/help.cpp:13
+msgid "Show current service and power mode status."
+msgstr "Показать текущее состояние сервиса и режима питания."
+
+#: cli/actions/help.cpp:14
+msgid "Run interactive configuration."
+msgstr "Запустить интерактивную настройку."
+
+#: cli/actions/help.cpp:15
+msgid "Show this help message (default)."
+msgstr "Показать справку (по умолчанию)."
+
+#: cli/actions/help.cpp:16
+msgid "Show program version."
+msgstr "Показать версию программы."
+
+#: cli/actions/help.cpp:18
+msgid "Options"
+msgstr "Параметры"
+
+#: cli/actions/help.cpp:19
+msgid "Force Russian language."
+msgstr "Принудительно использовать русский язык."
+
+#: cli/actions/help.cpp:20
+msgid "Force English language."
+msgstr "Принудительно использовать английский язык."
+
+#: cli/actions/help.cpp:22
+msgid "Examples"
+msgstr "Примеры"
+
+#: cli/actions/help.cpp:30
+msgid "Notes"
+msgstr "Примечания"
+
+#: cli/actions/help.cpp:31
+msgid "Only one action may be specified."
+msgstr "Можно указать только одно действие."
+
+#: cli/actions/help.cpp:32
+msgid "If no action is specified, --help is used by default."
+msgstr "Если действие не указано, используется --help."
+
+#: cli/actions/help.cpp:33
+msgid "Configuration is interactive."
+msgstr "Настройка выполняется в интерактивном режиме."
 
 #: cli/actions/version.cpp:13
 msgid "Version"
