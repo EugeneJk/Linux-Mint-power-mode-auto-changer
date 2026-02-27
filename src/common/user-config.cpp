@@ -4,6 +4,9 @@
 #include <optional>
 #include "../utils/str-empty-checker.hpp"
 
+
+#include <libintl.h>
+#define _(String) gettext(String)
 /* Get power profile opition*/
 std::optional<PowerProfile> parsePowerProfile(const std::string &value)
 {
@@ -37,6 +40,20 @@ std::string powerProfileToString(PowerProfile profile)
         return "balanced";
     case PowerProfile::Performance:
         return "performance";
+    }
+    return {}; // теоретически недостижимо
+}
+
+std::string powerProfileToNameString(PowerProfile profile)
+{
+    switch (profile)
+    {
+    case PowerProfile::PowerSaver:
+        return _("Power saver");
+    case PowerProfile::Balanced:
+        return _("Balanced");
+    case PowerProfile::Performance:
+        return _("Performance");
     }
     return {}; // теоретически недостижимо
 }

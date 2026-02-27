@@ -4,6 +4,7 @@
 #include <string>
 
 inline const std::string APP_NAME = "power-mode-auto-changer";
+inline const std::string USER_SERVICE_NAME = APP_NAME + ".service";
 
 /* Relative path from home folder to user configuration file */
 inline const std::string USER_CONFIG_REL =

@@ -28,4 +28,6 @@ UserConfig parceUserConfig(const std::map<std::string, std::string> &config);
 /* Prints power profile option */
 std::string powerProfileToString(PowerProfile profile);
 
+std::string powerProfileToNameString(PowerProfile profile);
+
 #endif

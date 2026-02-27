@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2026-02-24 20:33-0500\n"
-"PO-Revision-Date: 2026-02-24 20:37-0500\n"
+"POT-Creation-Date: 2026-02-26 20:21-0500\n"
+"PO-Revision-Date: 2026-02-26 20:26-0500\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ru\n"
@@ -74,6 +74,38 @@ msgstr "Если действие не указано, используется 
 msgid "Configuration is interactive."
 msgstr "Настройка выполняется в интерактивном режиме."
 
+#: cli/actions/status.cpp:26
+msgid "AC power source not detected. Unable to determine power state. Exiting."
+msgstr "Источник питания AC не обнаружен. Невозможно определить состояние питания. Завершение работы."
+
+#: cli/actions/status.cpp:41
+msgid "Enabled"
+msgstr "Включено"
+
+#: cli/actions/status.cpp:41
+msgid "Disabled"
+msgstr "Выключено"
+
+#: cli/actions/status.cpp:43
+msgid "Power mode synchronization on startup"
+msgstr "Синхронизация режима питания при загрузке"
+
+#: cli/actions/status.cpp:51
+msgid "Power mode when connected to AC"
+msgstr "Режим питания при подключенном источнике питания"
+
+#: cli/actions/status.cpp:55 cli/actions/status.cpp:70
+msgid "Notification text"
+msgstr "Текст уведомления"
+
+#: cli/actions/status.cpp:66
+msgid "Power mode when running on battery"
+msgstr "Режим питания при работе от батареи"
+
+#: cli/actions/status.cpp:77
+msgid "Application is not configured. Run the configurator to set it up. Exiting."
+msgstr "Приложение не сконфигурировано. Запустите конфигуратор. Завершение работы."
+
 #: cli/actions/version.cpp:13
 msgid "Version"
 msgstr "Версия"
@@ -89,3 +121,15 @@ msgstr "Неизвестный параметер"
 #: cli/parse-args.cpp:40
 msgid "Only one action supported"
 msgstr "Только одно действие допустимо"
+
+#: common/user-config.cpp:52
+msgid "Power saver"
+msgstr "Энергосбережение"
+
+#: common/user-config.cpp:54
+msgid "Balanced"
+msgstr "Сбалансировано"
+
+#: common/user-config.cpp:56
+msgid "Performance"
+msgstr "Быстродействие"
