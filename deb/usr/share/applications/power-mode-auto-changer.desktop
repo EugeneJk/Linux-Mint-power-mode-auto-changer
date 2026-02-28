@@ -1,0 +1,12 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Power Mode Auto Changer
+Name[ru]=Автопереключение режима питания
+Comment=Configure automatic power mode switching
+Comment[ru]=Настройка автоматического переключения режима питания
+Exec=power-mode-auto-changer-cli --configure --from-menu
+Icon=preferences-system-power
+Terminal=true
+Categories=Settings;HardwareSettings;
+StartupNotify=false

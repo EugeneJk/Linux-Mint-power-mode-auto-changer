@@ -35,9 +35,15 @@ int main(int argc, char *argv[])
         case AppAction::Version:
             showVersion();
             break;
+        case AppAction::MenuInteractiveConfig:
         case AppAction::InteractiveConfig:
             runConfiguration();
             break;
+        }
+        if(action == AppAction::MenuInteractiveConfig){
+            std::cout << "\n" << _("Press Enter to close this window...");
+            std::string dummy;
+            std::getline(std::cin, dummy);            
         }
     }
     catch (const std::exception &e)

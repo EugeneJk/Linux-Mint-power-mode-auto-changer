@@ -32,6 +32,8 @@ $(CLI_TARGET):
 	cp $(BUILD_DIR)/$(CLI_TARGET) $(DEB_USR_LOCAL_BIN_DIR)/$(CLI_TARGET)
 
 $(DEB_TARGET):
+	@SIZE=$$(du -sk deb/ | cut -f1); \
+	sed -i "s/^Installed-Size:.*/Installed-Size: $$SIZE/" deb/DEBIAN/control; \
 	dpkg-deb --build --root-owner-group deb $(BUILD_DIR)/$(PACKAGE)_$(VERSION).deb
 
 $(COPY_LANG_TARGET):

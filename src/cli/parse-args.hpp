@@ -9,6 +9,7 @@ enum class AppAction
     Help,
     Status,
     InteractiveConfig,
+    MenuInteractiveConfig,
     Version
 };
 

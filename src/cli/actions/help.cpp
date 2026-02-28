@@ -7,7 +7,7 @@
 void showHelp(){
     std::cout << _("Power Mode Auto Changer") << "\n";
     std::cout << _("Usage") << ":\n";
-    std::cout << "\tpower-mode-auto-changer [ACTION] [OPTION]\n\n";
+    std::cout << "\tpower-mode-auto-changer [ACTION] [OPTIONS]\n\n";
     
     std::cout << _("Actions") <<"\n";
     std::cout << "\t--status\t" <<_("Show current service and power mode status.") <<"\n";
@@ -18,6 +18,7 @@ void showHelp(){
     std::cout << _("Options") <<"\n";
     std::cout << "\t--lang=ru\t" <<_("Force Russian language.") <<"\n";
     std::cout << "\t--lang=en\t" <<_("Force English language.") <<"\n\n";
+    std::cout << "\t--from-menu\t" <<_("Enable exit confirmation when launched from the desktop menu.") <<"\n\n";
 
     std::cout << _("Examples") <<"\n";
     std::cout << "\tpower-mode-auto-changer\n";

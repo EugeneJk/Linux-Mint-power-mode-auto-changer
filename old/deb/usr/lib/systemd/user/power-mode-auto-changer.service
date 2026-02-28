@@ -1,9 +1,0 @@
-[Unit]
-Description=Sync power mode with current power source
-
-[Service]
-Type=oneshot
-ExecStart=/usr/local/lib/power-mode-auto-changer/switch-power-mode.sh
-
-[Install]
-WantedBy=default.target

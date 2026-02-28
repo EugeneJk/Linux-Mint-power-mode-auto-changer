@@ -135,4 +135,5 @@ void runConfiguration()
     std::string command = "systemctl --user " + syncMode + " --now " + USER_SERVICE_NAME;
     execCommand(command);
 
+    std::cout << "\n" << _("Configuration saved successfully.") << "\n";
 }
