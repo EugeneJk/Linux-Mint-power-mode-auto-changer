@@ -3,7 +3,8 @@
 #include <map>
 #include <optional>
 #include "../utils/str-empty-checker.hpp"
-
+#include <fstream>
+#include <iostream>
 
 #include <libintl.h>
 #define _(String) gettext(String)
@@ -56,4 +57,22 @@ std::string powerProfileToNameString(PowerProfile profile)
         return _("Performance");
     }
     return {}; // теоретически недостижимо
+}
+
+bool saveUserConfig(const std::string &path, UserConfig config)
+{
+    std::ofstream file(path, std::ios::trunc);
+    if (!file.is_open())
+        return false;
+
+    file << "ON_AC=" << powerProfileToString(config.onAc) << "\n";
+    file << "ON_BATTERY=" << powerProfileToString(config.onBat) << "\n";
+    file << "ON_AC_TEXT=" << config.onAcText << "\n";
+    file << "ON_BATTERY_TEXT=" << config.onBatText << "\n";
+
+    if (!file.good())
+        return false;
+
+    file.close();
+    return true;
 }

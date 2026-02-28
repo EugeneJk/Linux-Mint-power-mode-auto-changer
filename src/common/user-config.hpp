@@ -30,4 +30,6 @@ std::string powerProfileToString(PowerProfile profile);
 
 std::string powerProfileToNameString(PowerProfile profile);
 
+bool saveUserConfig(const std::string &path, UserConfig config);
+
 #endif
