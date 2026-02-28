@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2026-02-26 20:21-0500\n"
-"PO-Revision-Date: 2026-02-26 20:26-0500\n"
+"POT-Creation-Date: 2026-02-28 09:17-0500\n"
+"PO-Revision-Date: 2026-02-28 09:20-0500\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ru\n"
@@ -14,9 +14,69 @@ msgstr ""
 "X-Poedit-KeywordsList: _\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: cli/actions/help.cpp:8
+#: cli/actions/configure.cpp:22 cli/actions/help.cpp:8
 msgid "Power Mode Auto Changer"
 msgstr "Автопереключатель режимов питания"
+
+#: cli/actions/configure.cpp:23
+msgid "Interactive configuration mode"
+msgstr "Режим интерактивной настройки"
+
+#: cli/actions/configure.cpp:31 cli/actions/status.cpp:26
+msgid "AC power source not detected. Unable to determine power state. Exiting."
+msgstr ""
+"Источник питания AC не обнаружен. Невозможно определить состояние питания. "
+"Завершение работы."
+
+#: cli/actions/configure.cpp:39 cli/actions/configure.cpp:73
+msgid "Select the power mode when running"
+msgstr "Выберите режим питания при работе"
+
+#: cli/actions/configure.cpp:39
+msgid "on AC power"
+msgstr "от сети"
+
+#: cli/actions/configure.cpp:43 cli/actions/configure.cpp:77
+#: cli/actions/configure.cpp:112
+msgid "Quit"
+msgstr "Выход"
+
+#: cli/actions/configure.cpp:47 cli/actions/configure.cpp:81
+msgid "Enter choice"
+msgstr "Выберите вариант"
+
+#: cli/actions/configure.cpp:65 cli/actions/configure.cpp:99
+msgid "Mode selected"
+msgstr "Выбранный режим питания"
+
+#: cli/actions/configure.cpp:66 cli/actions/configure.cpp:100
+msgid "Enter notification text shown when this mode is activated"
+msgstr "Введите текст уведомления при активации этого режима питания"
+
+#: cli/actions/configure.cpp:67 cli/actions/configure.cpp:101
+msgid "Press Enter to use the default value."
+msgstr "Нажмите Enter для использования значения по умолчанию."
+
+#: cli/actions/configure.cpp:68 cli/actions/configure.cpp:102
+#: cli/actions/status.cpp:55 cli/actions/status.cpp:70
+msgid "Notification text"
+msgstr "Текст уведомления"
+
+#: cli/actions/configure.cpp:73
+msgid "on battery power"
+msgstr "от батареи"
+
+#: cli/actions/configure.cpp:107
+msgid "Enable power mode synchronization at system startup?"
+msgstr "Включить синхронизацию режима питания при загрузке системы?"
+
+#: cli/actions/configure.cpp:112
+msgid "Yes"
+msgstr "Да"
+
+#: cli/actions/configure.cpp:112
+msgid "No"
+msgstr "Нет"
 
 #: cli/actions/help.cpp:9
 msgid "Usage"
@@ -74,10 +134,6 @@ msgstr "Если действие не указано, используется 
 msgid "Configuration is interactive."
 msgstr "Настройка выполняется в интерактивном режиме."
 
-#: cli/actions/status.cpp:26
-msgid "AC power source not detected. Unable to determine power state. Exiting."
-msgstr "Источник питания AC не обнаружен. Невозможно определить состояние питания. Завершение работы."
-
 #: cli/actions/status.cpp:41
 msgid "Enabled"
 msgstr "Включено"
@@ -94,17 +150,15 @@ msgstr "Синхронизация режима питания при загру
 msgid "Power mode when connected to AC"
 msgstr "Режим питания при подключенном источнике питания"
 
-#: cli/actions/status.cpp:55 cli/actions/status.cpp:70
-msgid "Notification text"
-msgstr "Текст уведомления"
-
 #: cli/actions/status.cpp:66
 msgid "Power mode when running on battery"
 msgstr "Режим питания при работе от батареи"
 
 #: cli/actions/status.cpp:77
-msgid "Application is not configured. Run the configurator to set it up. Exiting."
-msgstr "Приложение не сконфигурировано. Запустите конфигуратор. Завершение работы."
+msgid ""
+"Application is not configured. Run the configurator to set it up. Exiting."
+msgstr ""
+"Приложение не сконфигурировано. Запустите конфигуратор. Завершение работы."
 
 #: cli/actions/version.cpp:13
 msgid "Version"
@@ -122,14 +176,19 @@ msgstr "Неизвестный параметер"
 msgid "Only one action supported"
 msgstr "Только одно действие допустимо"
 
-#: common/user-config.cpp:52
+#: common/user-config.cpp:53
 msgid "Power saver"
 msgstr "Энергосбережение"
 
-#: common/user-config.cpp:54
+#: common/user-config.cpp:55
 msgid "Balanced"
 msgstr "Сбалансировано"
 
-#: common/user-config.cpp:56
+#: common/user-config.cpp:57
 msgid "Performance"
 msgstr "Быстродействие"
+
+#, fuzzy
+#~| msgid "Power Mode Auto Changer"
+#~ msgid "Linux Mint power mode auto changer"
+#~ msgstr "Автопереключатель режимов питания"

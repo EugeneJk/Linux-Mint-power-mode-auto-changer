@@ -19,7 +19,7 @@ void runConfiguration()
     UserInfo user = getUser();
 
     std::cout << "\n"
-              << _("Linux Mint power mode auto changer") << "\n";
+              << _("Power Mode Auto Changer") << "\n";
     std::cout << _("Interactive configuration mode") << "\n\n";
 
     try
@@ -40,7 +40,7 @@ void runConfiguration()
     std::cout << "    1 - " << color::bright_yellow << powerProfileToNameString(PowerProfile::PowerSaver) << color::reset << "\n";
     std::cout << "    2 - " << color::green << powerProfileToNameString(PowerProfile::Balanced) << color::reset << "\n";
     std::cout << "    3 - " << color::bright_green << powerProfileToNameString(PowerProfile::Performance) << color::reset << "\n";
-    std::cout << "    q - " << _("Exit") << "\n\n";
+    std::cout << "    q - " << _("Quit") << "\n\n";
 
     while (true)
     {
@@ -62,8 +62,8 @@ void runConfiguration()
 
     selectedProfileName = powerProfileToNameString(userConfig.onAc);
     std::cout << "\n";
-    std::cout << _("Profile selected") << ": " << color::bright_cyan << selectedProfileName << color::reset << "\n\n";
-    std::cout << _("Enter notification text shown when this profile is activated") << "\n";
+    std::cout << _("Mode selected") << ": " << color::bright_cyan << selectedProfileName << color::reset << "\n\n";
+    std::cout << _("Enter notification text shown when this mode is activated") << "\n";
     std::cout << _("Press Enter to use the default value.") << "\n\n";
     std::cout << _("Notification text") << " [" << selectedProfileName << "]: ";
     std::getline(std::cin, input);
@@ -96,8 +96,8 @@ void runConfiguration()
 
     selectedProfileName = powerProfileToNameString(userConfig.onBat);
     std::cout << "\n";
-    std::cout << _("Profile selected") << ": " << color::bright_cyan << selectedProfileName << color::reset << "\n\n";
-    std::cout << _("Enter notification text shown when this profile is activated") << "\n";
+    std::cout << _("Mode selected") << ": " << color::bright_cyan << selectedProfileName << color::reset << "\n\n";
+    std::cout << _("Enter notification text shown when this mode is activated") << "\n";
     std::cout << _("Press Enter to use the default value.") << "\n\n";
     std::cout << _("Notification text") << " [" << selectedProfileName << "]: ";
     std::getline(std::cin, input);
