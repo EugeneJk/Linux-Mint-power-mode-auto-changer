@@ -5,6 +5,6 @@ Priority: optional
 Architecture: all
 Maintainer: Eugene Lazarchuk
 Depends: bash, systemd, udev
-Installed-Size: 320
+Installed-Size: 328
 Description: Auto power mode (profile) switcher for Linux Mint
   Automatically switches power modes in Linux Mint based on AC or battery status, with smart profile detection and desktop notifications.

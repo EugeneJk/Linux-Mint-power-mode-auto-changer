@@ -9,6 +9,7 @@
 #include "../../common/constants.hpp"
 #include "../../common/user-config.hpp"
 #include "../../common/user.hpp"
+#include <filesystem>
 
 #include <libintl.h>
 #define _(String) gettext(String)
@@ -89,7 +90,7 @@ void runConfiguration()
         if (input == "1" || input == "2" || input == "3")
         {
             userConfig.onBat = input == "1" ? PowerProfile::PowerSaver : input == "2" ? PowerProfile::Balanced
-                                                                                     : PowerProfile::Performance;
+                                                                                      : PowerProfile::Performance;
             break;
         }
     }
@@ -129,11 +130,26 @@ void runConfiguration()
     }
 
     std::string userConfigPath = "/home/" + user.name + "/" + USER_CONFIG_REL;
+    std::string dir = "/home/" + user.name + "/" + USER_CONFIG_DIR;
 
-    saveUserConfig(userConfigPath, userConfig);
+    if (!std::filesystem::exists(dir))
+    {
+        if (!std::filesystem::create_directories(dir))
+        {
+            std::cout << color::critical_error << _("Can't create config folder") << " " << dir << color::reset << "\n";
+            exit(1);
+        }
+    }
+
+    if (!saveUserConfig(userConfigPath, userConfig))
+    {
+        std::cout << color::critical_error << _("Can't save user configuration file") << " " << userConfigPath << color::reset << "\n";
+        exit(1);
+    }
 
     std::string command = "systemctl --user " + syncMode + " --now " + USER_SERVICE_NAME;
     execCommand(command);
 
-    std::cout << "\n" << _("Configuration saved successfully.") << "\n";
+    std::cout << "\n"
+              << _("Configuration saved successfully.") << "\n";
 }
