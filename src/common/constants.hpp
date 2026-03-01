@@ -18,5 +18,7 @@ inline const std::string SYSTEM_CONFIG =
 
 inline const std::string ON_AC_ICON = "ac-adapter-symbolic";
 inline const std::string ON_BAT_ICON = "battery-symbolic";
+inline const std::string ON_AC_ICON_OTHER = "ac-adapter";
+inline const std::string ON_BAT_ICON_OTHER = "battery";
 
 #endif

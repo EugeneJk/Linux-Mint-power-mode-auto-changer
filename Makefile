@@ -1,4 +1,4 @@
-VERSION=2.0.1
+VERSION=2.0.2
 PACKAGE=power-mode-auto-changer
 BUILD_DIR=build
 
@@ -34,8 +34,9 @@ $(CLI_TARGET):
 $(DEB_TARGET):
 	@SIZE=$$(du -sk deb/ | cut -f1); \
 	sed -i "s/^Installed-Size:.*/Installed-Size: $$SIZE/" deb/DEBIAN/control; \
+	sed -i "s/^Version:.*/Version: $(VERSION)/" deb/DEBIAN/control; \
 	dpkg-deb --build --root-owner-group deb $(BUILD_DIR)/$(PACKAGE)_$(VERSION).deb
-
+	
 $(COPY_LANG_TARGET):
 	cp ./lang/ru.mo  ./deb/usr/share/locale/ru/LC_MESSAGES/${PACKAGE}.mo
 

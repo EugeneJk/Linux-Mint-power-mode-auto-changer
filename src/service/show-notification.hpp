@@ -5,6 +5,6 @@
 #include <string>
 
 /* Get is power plugged */
-void showNotification(const UserInfo &user, const std::string &icon, const std::string &message);
+void showNotification(const UserInfo &user, const std::string &icon, const std::string &message, bool isCinnamon);
 
 #endif

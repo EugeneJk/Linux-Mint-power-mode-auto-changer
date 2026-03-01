@@ -24,6 +24,9 @@ int main()
         // load system config
         SystemConfig systemConfig = parceSystemConfig(loadConfig(SYSTEM_CONFIG));
 
+        std::string cinnamonSessionPid = execCommand("pgrep -u " + user.name + " -f cinnamon-session-binary");
+        bool isCinnamon = cinnamonSessionPid != "";
+
         bool isAcOn = isPowerPlugged(systemConfig.acStatusContainer);
 
         // define profile, icon and message to set and display
@@ -33,11 +36,11 @@ int main()
         if(isAcOn) {
             displayText = userConfig.onAcText;
             newPowerProfile = powerProfileToString(userConfig.onAc);
-            icon = ON_AC_ICON;
+            icon = isCinnamon ? ON_AC_ICON : ON_AC_ICON_OTHER;
         } else {
             displayText = userConfig.onBatText;
             newPowerProfile = powerProfileToString(userConfig.onBat);
-            icon = ON_BAT_ICON;
+            icon = isCinnamon ? ON_BAT_ICON : ON_BAT_ICON_OTHER;
         }
 
         // Get current profile
@@ -50,7 +53,7 @@ int main()
         execCommand("powerprofilesctl set " + newPowerProfile);
         
         // show notification
-        showNotification(user, icon, displayText);
+        showNotification(user, icon, displayText , isCinnamon);
     }
     catch (const std::exception &ex)
     {

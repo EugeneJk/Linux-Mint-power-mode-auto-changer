@@ -1,10 +1,10 @@
 Package: power-mode-auto-changer
-Version: 2.0.1
+Version: 2.0.2
 Section: system
 Priority: optional
 Architecture: all
 Maintainer: Eugene Lazarchuk
 Depends: bash, systemd, udev
-Installed-Size: 328
+Installed-Size: 344
 Description: Auto power mode (profile) switcher for Linux Mint
   Automatically switches power modes in Linux Mint based on AC or battery status, with smart profile detection and desktop notifications.
