@@ -1,4 +1,4 @@
-VERSION=2.0.2
+VERSION=2.0.3
 PACKAGE=power-mode-auto-changer
 BUILD_DIR=build
 
