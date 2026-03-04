@@ -22,7 +22,9 @@ int main()
     openlog(APP_NAME.c_str(), LOG_PID, LOG_DAEMON);
     syslog(LOG_INFO, "Started ...");
     // Create blocking to avoid run the same simultaniously
-    int fd = open(LOCK_FILE, O_CREAT | O_RDWR, 0644);
+    const char* runtimeDir = getenv("XDG_RUNTIME_DIR");
+    std::string lockPath = std::string(runtimeDir) + LOCK_FILE;    
+    int fd = open(lockPath.c_str(), O_CREAT | O_RDWR, 0644);
     if (fd == -1)
     {
         syslog(LOG_ERR, "open() failed: %s", std::strerror(errno));

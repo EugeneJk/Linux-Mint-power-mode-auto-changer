@@ -50,3 +50,11 @@ uninstall:
 
 clean:
 	rm -rf $(BUILD_DIR)
+
+# check for last startup
+# journalctl -b -t power-mode-auto-changer
+
+# for debug
+# journalctl -t power-mode-auto-changer -f
+
+# journalctl -t power-mode-auto-changer 

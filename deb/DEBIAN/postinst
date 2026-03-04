@@ -4,10 +4,7 @@ set -e
 CONFIG_DIR="/etc/power-mode-auto-changer"
 CONFIG_FILE="$CONFIG_DIR/config"
 
-# create directory if it's not exists
 mkdir -p "$CONFIG_DIR"
-
-echo "create config"
 
 # Find path to check AC status
 AC_PATH=$(for d in /sys/class/power_supply/*; do
@@ -17,15 +14,21 @@ AC_PATH=$(for d in /sys/class/power_supply/*; do
     fi
 done)
 
-#echo $AC_PATH
-# set path to config
-# if [ ! -f "$CONFIG_FILE" ]; then
-    cat <<EOF > "$CONFIG_FILE"
+# Check if performance profile is available
+IS_PERFORMANCE_AVAILABLE=0
+
+if command -v powerprofilesctl >/dev/null 2>&1; then
+    if powerprofilesctl list 2>/dev/null | grep -q "performance"; then
+        IS_PERFORMANCE_AVAILABLE=1
+    fi
+fi
+
+cat <<EOF > "$CONFIG_FILE"
 # Power Mode Auto Changer configuration
 
 AC_PATH=$AC_PATH
+IS_PERFORMANCE_AVAILABLE=$IS_PERFORMANCE_AVAILABLE
 EOF
-# fi
 
 systemctl daemon-reload
 udevadm control --reload
