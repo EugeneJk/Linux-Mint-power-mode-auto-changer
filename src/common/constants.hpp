@@ -22,5 +22,6 @@ inline const std::string ON_AC_ICON_OTHER = "ac-adapter";
 inline const std::string ON_BAT_ICON_OTHER = "battery";
 
 inline const char* LOCK_FILE = "power-mode-auto-changer.lock";
+inline const char* LOCK_FILE_PATH = "/run/power-mode-auto-changer.lock";
 
 #endif

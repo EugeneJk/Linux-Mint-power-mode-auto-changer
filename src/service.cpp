@@ -22,8 +22,16 @@ int main()
     openlog(APP_NAME.c_str(), LOG_PID, LOG_DAEMON);
     syslog(LOG_INFO, "Started ...");
     // Create blocking to avoid run the same simultaniously
-    const char* runtimeDir = getenv("XDG_RUNTIME_DIR");
-    std::string lockPath = std::string(runtimeDir) + LOCK_FILE;    
+    std::string lockPath;
+    const char *runtimeDir = getenv("XDG_RUNTIME_DIR");
+    syslog(LOG_INFO, "Runtime Dir: %s", runtimeDir);
+    if(!runtimeDir){
+        lockPath =  LOCK_FILE_PATH;
+    } else {
+        lockPath = std::string(runtimeDir) + "/" + LOCK_FILE;
+    }
+    syslog(LOG_INFO, "Lock path: %s", lockPath.c_str());
+
     int fd = open(lockPath.c_str(), O_CREAT | O_RDWR, 0644);
     if (fd == -1)
     {
@@ -105,7 +113,7 @@ int main()
     }
     catch (const std::exception &ex)
     {
-        syslog(LOG_ERR, "Error: %s" , ex.what());
+        syslog(LOG_ERR, "Error: %s", ex.what());
         // silent exit with error
         // release lock
         flock(fd, LOCK_UN);
