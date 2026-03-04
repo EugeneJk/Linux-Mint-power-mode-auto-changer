@@ -9,6 +9,7 @@
 struct SystemConfig
 {
     std::string acStatusContainer;
+    bool isPerformanceAvailable;
 };
 
 /* Parses user configuration */

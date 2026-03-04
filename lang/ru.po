@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2026-02-28 14:25-0500\n"
-"PO-Revision-Date: 2026-02-28 14:26-0500\n"
+"POT-Creation-Date: 2026-03-03 20:13-0500\n"
+"PO-Revision-Date: 2026-03-03 20:14-0500\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ru\n"
@@ -18,81 +18,81 @@ msgstr ""
 msgid "Press Enter to close this window..."
 msgstr "Нажмите Enter, чтобы закрыть окно..."
 
-#: cli/actions/configure.cpp:23 cli/actions/help.cpp:8
+#: cli/actions/configure.cpp:25 cli/actions/help.cpp:8
 msgid "Power Mode Auto Changer"
 msgstr "Автопереключатель режимов питания"
 
-#: cli/actions/configure.cpp:24
+#: cli/actions/configure.cpp:26
 msgid "Interactive configuration mode"
 msgstr "Режим интерактивной настройки"
 
-#: cli/actions/configure.cpp:32 cli/actions/status.cpp:26
-msgid "AC power source not detected. Unable to determine power state. Exiting."
-msgstr ""
-"Источник питания AC не обнаружен. Невозможно определить состояние питания. "
-"Завершение работы."
-
-#: cli/actions/configure.cpp:40 cli/actions/configure.cpp:74
+#: cli/actions/configure.cpp:34 cli/actions/configure.cpp:70
 msgid "Select the power mode when running"
 msgstr "Выберите режим питания при работе"
 
-#: cli/actions/configure.cpp:40
+#: cli/actions/configure.cpp:34
 msgid "on AC power"
 msgstr "от сети"
 
-#: cli/actions/configure.cpp:44 cli/actions/configure.cpp:78
-#: cli/actions/configure.cpp:113
+#: cli/actions/configure.cpp:40 cli/actions/configure.cpp:76
+#: cli/actions/configure.cpp:111
 msgid "Quit"
 msgstr "Выход"
 
-#: cli/actions/configure.cpp:48 cli/actions/configure.cpp:82
+#: cli/actions/configure.cpp:44 cli/actions/configure.cpp:80
 msgid "Enter choice"
 msgstr "Выберите вариант"
 
-#: cli/actions/configure.cpp:66 cli/actions/configure.cpp:100
+#: cli/actions/configure.cpp:62 cli/actions/configure.cpp:98
 msgid "Mode selected"
 msgstr "Выбранный режим питания"
 
-#: cli/actions/configure.cpp:67 cli/actions/configure.cpp:101
+#: cli/actions/configure.cpp:63 cli/actions/configure.cpp:99
 msgid "Enter notification text shown when this mode is activated"
 msgstr "Введите текст уведомления при активации этого режима питания"
 
-#: cli/actions/configure.cpp:68 cli/actions/configure.cpp:102
+#: cli/actions/configure.cpp:64 cli/actions/configure.cpp:100
 msgid "Press Enter to use the default value."
 msgstr "Нажмите Enter для использования значения по умолчанию."
 
-#: cli/actions/configure.cpp:69 cli/actions/configure.cpp:103
+#: cli/actions/configure.cpp:65 cli/actions/configure.cpp:101
 #: cli/actions/status.cpp:55 cli/actions/status.cpp:70
 msgid "Notification text"
 msgstr "Текст уведомления"
 
-#: cli/actions/configure.cpp:74
+#: cli/actions/configure.cpp:70
 msgid "on battery power"
 msgstr "от батареи"
 
-#: cli/actions/configure.cpp:108
+#: cli/actions/configure.cpp:106
 msgid "Enable power mode synchronization at system startup?"
 msgstr "Включить синхронизацию режима питания при загрузке системы?"
 
-#: cli/actions/configure.cpp:113
+#: cli/actions/configure.cpp:111
 msgid "Yes"
 msgstr "Да"
 
-#: cli/actions/configure.cpp:113
+#: cli/actions/configure.cpp:111
 msgid "No"
 msgstr "Нет"
 
-#: cli/actions/configure.cpp:139
+#: cli/actions/configure.cpp:137
 msgid "Can't create config folder"
 msgstr "Невозможно создать каталог с настройками"
 
-#: cli/actions/configure.cpp:146
+#: cli/actions/configure.cpp:144
 msgid "Can't save user configuration file"
 msgstr "Невозможно сохранить файл с пользовательскими настройками"
 
-#: cli/actions/configure.cpp:154
+#: cli/actions/configure.cpp:152
 msgid "Configuration saved successfully."
 msgstr "Настройки сохранены."
+
+#: cli/actions/configure.cpp:156 cli/actions/status.cpp:26
+msgid "AC power source not detected. Unable to determine power state. Exiting."
+msgstr ""
+"Источник питания AC не обнаружен. Невозможно определить состояние питания. "
+"Завершение работы."
 
 #: cli/actions/help.cpp:9
 msgid "Usage"
