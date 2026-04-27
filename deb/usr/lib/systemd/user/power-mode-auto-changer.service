@@ -3,7 +3,7 @@ Description=Sync power mode with current power source
 
 [Service]
 Type=oneshot
-ExecStart=/usr/local/bin/power-mode-auto-changer-service
+ExecStart=/usr/bin/power-mode-auto-changer-service
 
 [Install]
 WantedBy=default.target

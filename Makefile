@@ -1,4 +1,4 @@
-VERSION=2.0.3
+VERSION=2.0.4
 PACKAGE=power-mode-auto-changer
 BUILD_DIR=build
 
@@ -6,7 +6,7 @@ CXX = g++
 CXXFLAGS = -std=c++20 -Wall -Wextra -pedantic -O2 -Isrc
 BUILD_DIR = build
 SRC_DIR = src
-DEB_USR_LOCAL_BIN_DIR = deb/usr/local/bin
+DEB_USR_LOCAL_BIN_DIR = deb/usr/bin
 
 SERVICE_TARGET = power-mode-auto-changer-service
 CLI_TARGET = power-mode-auto-changer-cli

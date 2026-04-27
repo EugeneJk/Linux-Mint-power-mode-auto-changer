@@ -1,2 +1,3 @@
 build
-deb/usr/local/bin/*
+deb/usr/bin/power-mode-auto-changer-cli
+deb/usr/bin/power-mode-auto-changer-service

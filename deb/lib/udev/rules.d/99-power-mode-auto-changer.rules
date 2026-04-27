@@ -1,1 +1,1 @@
-SUBSYSTEM=="power_supply", ATTR{type}=="Mains", RUN+="/usr/local/bin/power-mode-auto-changer-service"
+SUBSYSTEM=="power_supply", ATTR{type}=="Mains", RUN+="/usr/bin/power-mode-auto-changer-service"
