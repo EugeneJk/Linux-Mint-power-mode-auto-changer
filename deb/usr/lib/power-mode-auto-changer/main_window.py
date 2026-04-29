@@ -1,11 +1,12 @@
 import gi
 gi.require_version("Gtk", "3.0")
 from gi.repository import Gtk, Gdk
+from lang import _
 
 
 class MainWindow(Gtk.Window):
     def __init__(self):
-        super().__init__(title="Power Mode Auto Changer")
+        super().__init__(title=_("Power Mode Auto Changer"))
 
         self._setWindowParams()
         self._setStyles()
@@ -14,19 +15,19 @@ class MainWindow(Gtk.Window):
         self.add(main_box)
 
         grid = self._createGrid()
-        main_box.pack_start(grid, True, True, 0)
+        main_box.pack_start(grid, False, False, 0)
 
         # Header row
         empty_header = self._createLabel("")
-        ac_header = self._createLabel("On A/C power", True, centered=True)
-        battery_header = self._createLabel("On battery power", True, centered=True)
+        ac_header = self._createLabel(_("On A/C power"), True, centered=True)
+        battery_header = self._createLabel(_("On battery power"), True, centered=True)
 
         grid.attach(self._wrap_cell(empty_header), 0, 0, 1, 1)
         grid.attach(self._wrap_cell(ac_header), 1, 0, 1, 1)
         grid.attach(self._wrap_cell(battery_header), 2, 0, 1, 1)
 
         # Profile row
-        profile_label = self._createLabel("Profile mode")
+        profile_label = self._createLabel(_("Profile mode"))
         ac_profile = self._createDropdown()
         battery_profile = self._createDropdown()
 
@@ -35,7 +36,7 @@ class MainWindow(Gtk.Window):
         grid.attach(self._wrap_cell(battery_profile, last_col=True), 2, 1, 1, 1)
 
         # Notification row
-        notification_label = self._createLabel("Notification text")
+        notification_label = self._createLabel(_("Notification text"))
         ac_notification = self._createTextBox()
         battery_notification = self._createTextBox()
 
@@ -52,13 +53,22 @@ class MainWindow(Gtk.Window):
         grid.get_child_at(2, 0).set_size_request(200, -1)
 
         # Sync checkbox
-        sync_checkbox = Gtk.CheckButton(label="Sync on start")
+        sync_checkbox = Gtk.CheckButton()
+
+        checkbox_label = Gtk.Label(label=_("Sync on start up"))
+        checkbox_label.set_margin_start(5)
+
+        box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=0)
+        box.pack_start(checkbox_label, False, False, 0)
+
+        sync_checkbox.add(box)
         main_box.pack_start(sync_checkbox, False, False, 0)
 
     def _setWindowParams(self):
         self.set_border_width(15)
-        self.set_default_size(800, 300)
-        self.set_size_request(700, 300)
+        self.set_default_size(800, 200)
+        self.set_size_request(700, 200)
+        self.set_position(Gtk.WindowPosition.CENTER)
 
     def _setStyles(self):
         css = b"""
@@ -88,9 +98,9 @@ class MainWindow(Gtk.Window):
 
     def _createDropdown(self):
         combo = Gtk.ComboBoxText()
-        combo.append_text("Power Saver")
-        combo.append_text("Balanced")
-        combo.append_text("Performance")
+        combo.append_text(_("Power saver"))
+        combo.append_text(_("Balanced"))
+        combo.append_text(_("Performance"))
         combo.set_active(1)
         combo.set_size_request(180, -1)
         return combo
@@ -122,9 +132,8 @@ class MainWindow(Gtk.Window):
         grid.get_style_context().add_class("custom-grid")
         grid.set_row_spacing(0)
         grid.set_column_spacing(0)
-
-        # Static height for exactly 3 rows + header
-        grid.set_size_request(-1, 180)
+        grid.set_vexpand(False)
+        grid.set_hexpand(True)
 
         return grid
 

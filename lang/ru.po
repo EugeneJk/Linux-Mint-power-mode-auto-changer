@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2026-03-03 20:13-0500\n"
-"PO-Revision-Date: 2026-03-03 20:14-0500\n"
+"POT-Creation-Date: 2026-04-29 14:28-0400\n"
+"PO-Revision-Date: 2026-04-29 14:29-0400\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ru\n"
@@ -10,203 +10,225 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 3.4.2\n"
-"X-Poedit-Basepath: ../src\n"
+"X-Poedit-Basepath: ..\n"
 "X-Poedit-KeywordsList: _\n"
-"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPath-0: src\n"
+"X-Poedit-SearchPath-1: deb/usr/lib/power-mode-auto-changer\n"
 
-#: cli.cpp:44
-msgid "Press Enter to close this window..."
-msgstr "Нажмите Enter, чтобы закрыть окно..."
-
-#: cli/actions/configure.cpp:25 cli/actions/help.cpp:8
+#: deb/usr/lib/power-mode-auto-changer/main_window.py:9
+#: src/cli/actions/configure.cpp:25 src/cli/actions/help.cpp:8
 msgid "Power Mode Auto Changer"
 msgstr "Автопереключатель режимов питания"
 
-#: cli/actions/configure.cpp:26
-msgid "Interactive configuration mode"
-msgstr "Режим интерактивной настройки"
+#: deb/usr/lib/power-mode-auto-changer/main_window.py:22
+msgid "On A/C power"
+msgstr "От сети"
 
-#: cli/actions/configure.cpp:34 cli/actions/configure.cpp:70
-msgid "Select the power mode when running"
-msgstr "Выберите режим питания при работе"
+#: deb/usr/lib/power-mode-auto-changer/main_window.py:23
+msgid "On battery power"
+msgstr "От батареи"
 
-#: cli/actions/configure.cpp:34
-msgid "on AC power"
-msgstr "от сети"
+#: deb/usr/lib/power-mode-auto-changer/main_window.py:30
+msgid "Profile mode"
+msgstr "Режим питания"
 
-#: cli/actions/configure.cpp:40 cli/actions/configure.cpp:76
-#: cli/actions/configure.cpp:111
-msgid "Quit"
-msgstr "Выход"
-
-#: cli/actions/configure.cpp:44 cli/actions/configure.cpp:80
-msgid "Enter choice"
-msgstr "Выберите вариант"
-
-#: cli/actions/configure.cpp:62 cli/actions/configure.cpp:98
-msgid "Mode selected"
-msgstr "Выбранный режим питания"
-
-#: cli/actions/configure.cpp:63 cli/actions/configure.cpp:99
-msgid "Enter notification text shown when this mode is activated"
-msgstr "Введите текст уведомления при активации этого режима питания"
-
-#: cli/actions/configure.cpp:64 cli/actions/configure.cpp:100
-msgid "Press Enter to use the default value."
-msgstr "Нажмите Enter для использования значения по умолчанию."
-
-#: cli/actions/configure.cpp:65 cli/actions/configure.cpp:101
-#: cli/actions/status.cpp:55 cli/actions/status.cpp:70
+#: deb/usr/lib/power-mode-auto-changer/main_window.py:39
+#: src/cli/actions/configure.cpp:65 src/cli/actions/configure.cpp:101
+#: src/cli/actions/status.cpp:55 src/cli/actions/status.cpp:70
 msgid "Notification text"
 msgstr "Текст уведомления"
 
-#: cli/actions/configure.cpp:70
+#: deb/usr/lib/power-mode-auto-changer/main_window.py:58
+msgid "Sync on start up"
+msgstr "Синхронизация при загрузке"
+
+#: deb/usr/lib/power-mode-auto-changer/main_window.py:101
+#: src/common/user-config.cpp:53
+msgid "Power saver"
+msgstr "Энергосбережение"
+
+#: deb/usr/lib/power-mode-auto-changer/main_window.py:102
+#: src/common/user-config.cpp:55
+msgid "Balanced"
+msgstr "Сбалансировано"
+
+#: deb/usr/lib/power-mode-auto-changer/main_window.py:103
+#: src/common/user-config.cpp:57
+msgid "Performance"
+msgstr "Быстродействие"
+
+#: src/cli.cpp:44
+msgid "Press Enter to close this window..."
+msgstr "Нажмите Enter, чтобы закрыть окно..."
+
+#: src/cli/actions/configure.cpp:26
+msgid "Interactive configuration mode"
+msgstr "Режим интерактивной настройки"
+
+#: src/cli/actions/configure.cpp:34 src/cli/actions/configure.cpp:70
+msgid "Select the power mode when running"
+msgstr "Выберите режим питания при работе"
+
+#: src/cli/actions/configure.cpp:34
+msgid "on AC power"
+msgstr "от сети"
+
+#: src/cli/actions/configure.cpp:40 src/cli/actions/configure.cpp:76
+#: src/cli/actions/configure.cpp:111
+msgid "Quit"
+msgstr "Выход"
+
+#: src/cli/actions/configure.cpp:44 src/cli/actions/configure.cpp:80
+msgid "Enter choice"
+msgstr "Выберите вариант"
+
+#: src/cli/actions/configure.cpp:62 src/cli/actions/configure.cpp:98
+msgid "Mode selected"
+msgstr "Выбранный режим питания"
+
+#: src/cli/actions/configure.cpp:63 src/cli/actions/configure.cpp:99
+msgid "Enter notification text shown when this mode is activated"
+msgstr "Введите текст уведомления при активации этого режима питания"
+
+#: src/cli/actions/configure.cpp:64 src/cli/actions/configure.cpp:100
+msgid "Press Enter to use the default value."
+msgstr "Нажмите Enter для использования значения по умолчанию."
+
+#: src/cli/actions/configure.cpp:70
 msgid "on battery power"
 msgstr "от батареи"
 
-#: cli/actions/configure.cpp:106
+#: src/cli/actions/configure.cpp:106
 msgid "Enable power mode synchronization at system startup?"
 msgstr "Включить синхронизацию режима питания при загрузке системы?"
 
-#: cli/actions/configure.cpp:111
+#: src/cli/actions/configure.cpp:111
 msgid "Yes"
 msgstr "Да"
 
-#: cli/actions/configure.cpp:111
+#: src/cli/actions/configure.cpp:111
 msgid "No"
 msgstr "Нет"
 
-#: cli/actions/configure.cpp:137
+#: src/cli/actions/configure.cpp:137
 msgid "Can't create config folder"
 msgstr "Невозможно создать каталог с настройками"
 
-#: cli/actions/configure.cpp:144
+#: src/cli/actions/configure.cpp:144
 msgid "Can't save user configuration file"
 msgstr "Невозможно сохранить файл с пользовательскими настройками"
 
-#: cli/actions/configure.cpp:152
+#: src/cli/actions/configure.cpp:152
 msgid "Configuration saved successfully."
 msgstr "Настройки сохранены."
 
-#: cli/actions/configure.cpp:156 cli/actions/status.cpp:26
+#: src/cli/actions/configure.cpp:156 src/cli/actions/status.cpp:26
 msgid "AC power source not detected. Unable to determine power state. Exiting."
 msgstr ""
 "Источник питания AC не обнаружен. Невозможно определить состояние питания. "
 "Завершение работы."
 
-#: cli/actions/help.cpp:9
+#: src/cli/actions/help.cpp:9
 msgid "Usage"
 msgstr "Использование"
 
-#: cli/actions/help.cpp:12
+#: src/cli/actions/help.cpp:12
 msgid "Actions"
 msgstr "Действия"
 
-#: cli/actions/help.cpp:13
+#: src/cli/actions/help.cpp:13
 msgid "Show current service and power mode status."
 msgstr "Показать текущее состояние сервиса и режима питания."
 
-#: cli/actions/help.cpp:14
+#: src/cli/actions/help.cpp:14
 msgid "Run interactive configuration."
 msgstr "Запустить интерактивную настройку."
 
-#: cli/actions/help.cpp:15
+#: src/cli/actions/help.cpp:15
 msgid "Show this help message (default)."
 msgstr "Показать справку (по умолчанию)."
 
-#: cli/actions/help.cpp:16
+#: src/cli/actions/help.cpp:16
 msgid "Show program version."
 msgstr "Показать версию программы."
 
-#: cli/actions/help.cpp:18
+#: src/cli/actions/help.cpp:18
 msgid "Options"
 msgstr "Параметры"
 
-#: cli/actions/help.cpp:19
+#: src/cli/actions/help.cpp:19
 msgid "Force Russian language."
 msgstr "Принудительно использовать русский язык."
 
-#: cli/actions/help.cpp:20
+#: src/cli/actions/help.cpp:20
 msgid "Force English language."
 msgstr "Принудительно использовать английский язык."
 
-#: cli/actions/help.cpp:21
+#: src/cli/actions/help.cpp:21
 msgid "Enable exit confirmation when launched from the desktop menu."
 msgstr "Добавить подтверждение выхода из программы при запуске из меню."
 
-#: cli/actions/help.cpp:23
+#: src/cli/actions/help.cpp:23
 msgid "Examples"
 msgstr "Примеры"
 
-#: cli/actions/help.cpp:31
+#: src/cli/actions/help.cpp:31
 msgid "Notes"
 msgstr "Примечания"
 
-#: cli/actions/help.cpp:32
+#: src/cli/actions/help.cpp:32
 msgid "Only one action may be specified."
 msgstr "Можно указать только одно действие."
 
-#: cli/actions/help.cpp:33
+#: src/cli/actions/help.cpp:33
 msgid "If no action is specified, --help is used by default."
 msgstr "Если действие не указано, используется --help."
 
-#: cli/actions/help.cpp:34
+#: src/cli/actions/help.cpp:34
 msgid "Configuration is interactive."
 msgstr "Настройка выполняется в интерактивном режиме."
 
-#: cli/actions/status.cpp:41
+#: src/cli/actions/status.cpp:41
 msgid "Enabled"
 msgstr "Включено"
 
-#: cli/actions/status.cpp:41
+#: src/cli/actions/status.cpp:41
 msgid "Disabled"
 msgstr "Выключено"
 
-#: cli/actions/status.cpp:43
+#: src/cli/actions/status.cpp:43
 msgid "Power mode synchronization on startup"
 msgstr "Синхронизация режима питания при загрузке"
 
-#: cli/actions/status.cpp:51
+#: src/cli/actions/status.cpp:51
 msgid "Power mode when connected to AC"
 msgstr "Режим питания при подключенном источнике питания"
 
-#: cli/actions/status.cpp:66
+#: src/cli/actions/status.cpp:66
 msgid "Power mode when running on battery"
 msgstr "Режим питания при работе от батареи"
 
-#: cli/actions/status.cpp:77
+#: src/cli/actions/status.cpp:77
 msgid ""
 "Application is not configured. Run the configurator to set it up. Exiting."
 msgstr ""
 "Приложение не сконфигурировано. Запустите конфигуратор. Завершение работы."
 
-#: cli/actions/version.cpp:13
+#: src/cli/actions/version.cpp:13
 msgid "Version"
 msgstr "Версия"
 
-#: cli/parse-args.cpp:21
+#: src/cli/parse-args.cpp:21
 msgid "Unknown action"
 msgstr "Неизвестное действие"
 
-#: cli/parse-args.cpp:36
+#: src/cli/parse-args.cpp:36
 msgid "Unknown parameter"
 msgstr "Неизвестный параметер"
 
-#: cli/parse-args.cpp:49
+#: src/cli/parse-args.cpp:49
 msgid "Only one action supported"
 msgstr "Только одно действие допустимо"
-
-#: common/user-config.cpp:53
-msgid "Power saver"
-msgstr "Энергосбережение"
-
-#: common/user-config.cpp:55
-msgid "Balanced"
-msgstr "Сбалансировано"
-
-#: common/user-config.cpp:57
-msgid "Performance"
-msgstr "Быстродействие"
 
 #, fuzzy
 #~| msgid "Power Mode Auto Changer"
