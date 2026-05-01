@@ -1,3 +1,4 @@
+import subprocess
 import os
 from lang import _ # pyright: ignore[reportAttributeAccessIssue]
 from power_mode import PowerMode, PowerModeText, getPowerMode, getPowerModeText
@@ -14,6 +15,7 @@ class Config:
         self.__isPerformanceAvailable = False
         self.__configPath = '~/.config/power-mode-auto-changer/power-modes.conf'
         self.__systemConfigPath = '/etc/power-mode-auto-changer/config'
+        self.__userServiceName = 'power-mode-auto-changer.service'
         self.__load()
 
     def __load(self):
@@ -105,11 +107,26 @@ class Config:
         return self.__onBatteryTextDefault
 
     def getIsSyncOn(self):
-        return False
+        result = subprocess.run(
+            ["systemctl", "--user", "is-enabled", self.__userServiceName],
+            capture_output=True,
+            text=True
+        )
+
+        return result.stdout.strip() == "enabled"
     
     def setIsSyncOn(self, value: bool):
-        print('set sync', value)
+        if value:
+            newStatus = "enable"
+        else:
+            newStatus = "disable"
 
+        subprocess.run(
+            ["systemctl", "--user", newStatus, "--now", self.__userServiceName],
+            capture_output=True,
+            text=True
+        )
+        
     def __saveConfig(self):
         config_path = os.path.expanduser(self.__configPath)
 
