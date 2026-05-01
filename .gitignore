@@ -1,5 +1,5 @@
 build
 deb/usr/bin/power-mode-auto-changer-cli
 deb/usr/bin/power-mode-auto-changer-service
-deb/usr/lib/power-mode-auto-changer/__pycache__
-deb/usr/lib/power-mode-auto-changer/main_window_components/__pycache__
+__pycache__/
+*.pyc

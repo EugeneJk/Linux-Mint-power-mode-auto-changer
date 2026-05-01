@@ -1,3 +1,4 @@
+import subprocess
 import gi
 gi.require_version("Gtk", "3.0")
 from gi.repository import Gtk, Gdk # pyright: ignore[reportAttributeAccessIssue]
@@ -12,7 +13,7 @@ from main_window_components.checkbox import Checkbox
 class MainWindow(Gtk.Window):
     def __init__(self, config: Config):
         super().__init__(title=_("Power Mode Auto Changer"))
-        
+
         self._setWindowParams()
         setGridStyles()
 
@@ -61,8 +62,29 @@ class MainWindow(Gtk.Window):
         grid.get_child_at(2, 0).set_size_request(200, -1)
 
         # Sync checkbox
-        sync_checkbox = Checkbox(_("Sync on start up"), config.getIsSyncOn, config.setIsSyncOn).element
-        main_box.pack_start(sync_checkbox, False, False, 0)
+        sync_checkbox = Checkbox(
+            _("Sync on start up"),
+            config.getIsSyncOn,
+            config.setIsSyncOn
+        ).element
+
+        sync_button = Gtk.Button(label=_("Sync now"))
+        sync_button.connect("clicked", self._on_sync_clicked)
+
+        bottom_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL)
+        bottom_box.pack_start(sync_checkbox, False, False, 0)
+        spacer = Gtk.Box()
+        spacer.set_hexpand(True)
+        bottom_box.pack_start(spacer, True, True, 0)
+        bottom_box.pack_end(sync_button, False, False, 0)
+        main_box.pack_start(bottom_box, False, False, 0)
+
+    def _on_sync_clicked(self, button):
+        subprocess.run(
+            ["power-mode-auto-changer-service"],
+            capture_output=True,
+            text=True
+        )
 
     def _setWindowParams(self):
         self.set_border_width(15)
