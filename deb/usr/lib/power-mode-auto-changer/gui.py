@@ -2,11 +2,13 @@
 
 import gi
 gi.require_version("Gtk", "3.0")
-from gi.repository import Gtk
+from gi.repository import Gtk # pyright: ignore[reportAttributeAccessIssue]
 from main_window import MainWindow
+from config import Config
 
 
 def main():
+    config = Config()
     win = MainWindow()
     win.connect("destroy", Gtk.main_quit)
     win.show_all()

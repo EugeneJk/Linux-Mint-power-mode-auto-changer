@@ -16,7 +16,7 @@ COPY_LANG_TARGET = copy-translaction
 COMMON_SOURCES := $(shell find $(SRC_DIR) -mindepth 2 -name "*.cpp")
 SERVICE_SOURCE := $(SRC_DIR)/service.cpp
 CLI_SOURCE := $(SRC_DIR)/cli.cpp
-TEST_SOURCE := $(SRC_DIR)/test.cpp
+PYTHON_CACHE := deb/usr/lib/power-mode-auto-changer/__pycache__
 
 all: $(SERVICE_TARGET) $(CLI_TARGET) $(COPY_LANG_TARGET) $(DEB_TARGET)
 
@@ -32,6 +32,7 @@ $(CLI_TARGET):
 	cp $(BUILD_DIR)/$(CLI_TARGET) $(DEB_USR_LOCAL_BIN_DIR)/$(CLI_TARGET)
 
 $(DEB_TARGET):
+	rm $(PYTHON_CACHE)
 	@SIZE=$$(du -sk deb/ | cut -f1); \
 	sed -i "s/^Installed-Size:.*/Installed-Size: $$SIZE/" deb/DEBIAN/control; \
 	sed -i "s/^Version:.*/Version: $(VERSION)/" deb/DEBIAN/control; \

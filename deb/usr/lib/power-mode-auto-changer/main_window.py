@@ -1,7 +1,7 @@
 import gi
 gi.require_version("Gtk", "3.0")
-from gi.repository import Gtk, Gdk
-from lang import _
+from gi.repository import Gtk, Gdk # pyright: ignore[reportAttributeAccessIssue]
+from lang import _ # pyright: ignore[reportAttributeAccessIssue]
 
 
 class MainWindow(Gtk.Window):
