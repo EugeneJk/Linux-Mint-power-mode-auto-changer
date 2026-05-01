@@ -68,8 +68,6 @@ class Config:
         if isBrokenConfig:
             self.__saveConfig()
 
-        print(self)
-
     def getOnBattery(self):
         return self.__onBattery
 
@@ -107,7 +105,7 @@ class Config:
         return self.__onBatteryTextDefault
 
     def getIsSyncOn(self):
-        return True
+        return False
     
     def setIsSyncOn(self, value: bool):
         print('set sync', value)

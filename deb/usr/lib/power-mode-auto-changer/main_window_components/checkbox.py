@@ -1,3 +1,4 @@
+from typing import Callable
 from gi.repository import Gtk # pyright: ignore[reportAttributeAccessIssue]
 
 def createCheckBox(label):
@@ -12,3 +13,25 @@ def createCheckBox(label):
     entry.add(box)
 
     return entry
+
+class Checkbox:
+    def __init__(
+        self,
+        label,
+        getVal: Callable[[], bool],
+        setVal: Callable[[bool], None],
+    ):
+        self.getVal = getVal
+        self.setVal = setVal
+
+        self.element = createCheckBox(label)
+
+        # Set initial value
+        self.element.set_active(self.getVal())
+
+        # Change event
+        self.element.connect("toggled", self._on_toggled)
+        
+    def _on_toggled(self, checkbox):
+        new_value = checkbox.get_active()
+        self.setVal(new_value)

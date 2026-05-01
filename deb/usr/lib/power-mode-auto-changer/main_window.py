@@ -7,12 +7,12 @@ from main_window_components.label import createLabel
 from main_window_components.dropdown import Dropdown
 from main_window_components.textbox import Textbox
 from main_window_components.grid import createGrid, setGridStyles, wrapCell
-from main_window_components.checkbox import createCheckBox
+from main_window_components.checkbox import Checkbox
 
 class MainWindow(Gtk.Window):
     def __init__(self, config: Config):
         super().__init__(title=_("Power Mode Auto Changer"))
-        self.__config = config
+        
         self._setWindowParams()
         setGridStyles()
 
@@ -61,7 +61,7 @@ class MainWindow(Gtk.Window):
         grid.get_child_at(2, 0).set_size_request(200, -1)
 
         # Sync checkbox
-        sync_checkbox = createCheckBox(_("Sync on start up"))
+        sync_checkbox = Checkbox(_("Sync on start up"), config.getIsSyncOn, config.setIsSyncOn).element
         main_box.pack_start(sync_checkbox, False, False, 0)
 
     def _setWindowParams(self):
