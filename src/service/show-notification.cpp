@@ -38,6 +38,7 @@ void showCinnamonNotification(const UserInfo &user,
 
     if (pid == 0)
     {
+        sleep(2);
         // child
         execvp("sudo", argv.data());
         throw std::runtime_error("Notification display failed");
