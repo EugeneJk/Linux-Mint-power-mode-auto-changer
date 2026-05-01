@@ -11,7 +11,7 @@ class PowerModeText(str, Enum):
     POWER_SAVER = _("Power saver")
     PERFORMANCE = _("Performance")
 
-def getPowerMode(val: str):
+def getPowerMode(val: str) -> PowerMode | None:
     if val == PowerMode.BALANCED.value :
         return PowerMode.BALANCED
     if val == PowerMode.POWER_SAVER.value :

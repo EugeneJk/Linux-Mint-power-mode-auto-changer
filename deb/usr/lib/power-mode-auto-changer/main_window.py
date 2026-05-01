@@ -4,8 +4,8 @@ from gi.repository import Gtk, Gdk # pyright: ignore[reportAttributeAccessIssue]
 from lang import _ # pyright: ignore[reportAttributeAccessIssue]
 from config import Config
 from main_window_components.label import createLabel
-from main_window_components.dropdown import createDropdown
-from main_window_components.textbox import createTextBox
+from main_window_components.dropdown import Dropdown
+from main_window_components.textbox import Textbox
 from main_window_components.grid import createGrid, setGridStyles, wrapCell
 from main_window_components.checkbox import createCheckBox
 
@@ -33,22 +33,25 @@ class MainWindow(Gtk.Window):
 
         # Profile row
         profile_label = createLabel(_("Profile mode"))
-        ac_profile = createDropdown()
-        battery_profile = createDropdown()
+        ac_profile = Dropdown(config.getOnAc, config.setOnAc)
+        battery_profile = Dropdown(config.getOnBattery, config.setOnBattery)
 
         grid.attach(wrapCell(profile_label), 0, 1, 1, 1)
-        grid.attach(wrapCell(ac_profile), 1, 1, 1, 1)
-        grid.attach(wrapCell(battery_profile, last_col=True), 2, 1, 1, 1)
+        grid.attach(wrapCell(ac_profile.element), 1, 1, 1, 1)
+        grid.attach(wrapCell(battery_profile.element, last_col=True), 2, 1, 1, 1)
 
         # Notification row
         notification_label = createLabel(_("Notification text"))
-        ac_notification = createTextBox()
-        battery_notification = createTextBox()
+        ac_notification = Textbox(config.getOnAcText, config.setOnAcText, config.getOnAcTextDefault)
+        battery_notification = Textbox(config.getOnBatteryText, config.setOnBatteryText, config.getOnBatteryTextDefault)
+
+        ac_profile.textbox = ac_notification;
+        battery_profile.textbox = battery_notification;
 
         grid.attach(wrapCell(notification_label, last_row=True), 0, 2, 1, 1)
-        grid.attach(wrapCell(ac_notification, last_row=True), 1, 2, 1, 1)
+        grid.attach(wrapCell(ac_notification.element, last_row=True), 1, 2, 1, 1)
         grid.attach(
-            wrapCell(battery_notification, last_row=True, last_col=True),
+            wrapCell(battery_notification.element, last_row=True, last_col=True),
             2, 2, 1, 1
         )
 

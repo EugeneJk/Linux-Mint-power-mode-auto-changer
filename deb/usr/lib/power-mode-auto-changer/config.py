@@ -70,11 +70,47 @@ class Config:
 
         print(self)
 
+    def getOnBattery(self):
+        return self.__onBattery
+
+    def setOnBattery(self, value: PowerMode):
+        self.__onBattery = value
+        self.__onBatteryTextDefault = getPowerModeText(value).value
+        self.__saveConfig()
+
     def getOnAc(self):
         return self.__onAc
 
-    def setOnAc(self, value: str):
-        print('set on AC', value)
+    def setOnAc(self, value: PowerMode):
+        self.__onAc = value
+        self.__onAcTextDefault = getPowerModeText(value).value
+        self.__saveConfig()
+
+    def getOnAcText(self):
+        return self.__onAcText
+
+    def setOnAcText(self, value: str):
+        self.__onAcText = value
+        self.__saveConfig()
+
+    def getOnAcTextDefault(self):
+        return self.__onAcTextDefault
+
+    def getOnBatteryText(self):
+        return self.__onBatteryText
+
+    def setOnBatteryText(self, value: str):
+        self.__onBatteryText = value
+        self.__saveConfig()
+
+    def getOnBatteryTextDefault(self):
+        return self.__onBatteryTextDefault
+
+    def getIsSyncOn(self):
+        return True
+    
+    def setIsSyncOn(self, value: bool):
+        print('set sync', value)
 
     def __saveConfig(self):
         config_path = os.path.expanduser(self.__configPath)
