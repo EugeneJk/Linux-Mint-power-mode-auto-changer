@@ -1,4 +1,4 @@
-# Linux Mint power mode auto changer
+# Automatic power profile switching for laptops
 
 Full documentation:
 
@@ -69,3 +69,8 @@ sudo apt remove power-mode-auto-changer
 ## Prerequisites
 - **TLP is not supported.**
 - The **standard Linux Mint power manager** must be installed and active.
+
+## Keywords
+🇬🇧 Linux Mint, Ubuntu, Debian, laptop power management, automatic power profile switching, power-profiles-daemon, powerprofilesctl, battery mode automation, AC power detection, battery saver Linux, performance mode Linux, balanced mode Linux, laptop battery optimization, Linux power mode changer, auto power mode switcher, Linux laptop battery saver, Linux performance profile automation, udev power events, systemd power management, GTK power settings, Python GTK3 Linux utility, Linux desktop power profiles, automatic battery profile switcher, Linux Mint power profile manager, Ubuntu power mode manager, laptop AC battery profile automation, Linux power management utility, Cinnamon power management, GNOME power profiles, Linux battery notifications, laptop power optimization tool
+
+🇷🇺 Linux Mint, Ubuntu, Debian, управление питанием ноутбука, автоматическое переключение режимов питания, power-profiles-daemon, powerprofilesctl, автоматизация профилей питания, определение питания от сети, режим энергосбережения Linux, режим производительности Linux, сбалансированный режим Linux, оптимизация батареи ноутбука, переключатель режимов питания Linux, автоматическое переключение профилей питания, экономия батареи Linux, автоматизация производительного режима, udev события питания, systemd управление питанием, настройки питания GTK, Python GTK3 Linux утилита, профили питания Linux, автоматическое переключение батарейного режима, менеджер профилей питания Linux Mint, менеджер режимов питания Ubuntu, автоматизация профилей AC и батареи, утилита управления питанием Linux, управление питанием Cinnamon, профили питания GNOME, уведомления батареи Linux, инструмент оптимизации энергопотребления ноутбука

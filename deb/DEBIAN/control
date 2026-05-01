@@ -4,7 +4,8 @@ Section: system
 Priority: optional
 Architecture: all
 Maintainer: Eugene Lazarchuk
-Depends: bash, systemd, udev
+Depends: bash, systemd, udev, power-profiles-daemon, python3, python3-gi, gir1.2-gtk-3.0
+Conflicts: tlp
 Installed-Size: 400
 Description: Auto power mode (profile) switcher for Linux Mint
   Automatically switches power modes in Linux Mint based on AC or battery status, with smart profile detection and desktop notifications.
