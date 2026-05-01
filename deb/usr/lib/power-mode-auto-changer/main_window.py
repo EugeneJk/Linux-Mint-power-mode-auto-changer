@@ -34,8 +34,8 @@ class MainWindow(Gtk.Window):
 
         # Profile row
         profile_label = createLabel(_("Profile mode"))
-        ac_profile = Dropdown(config.getOnAc, config.setOnAc)
-        battery_profile = Dropdown(config.getOnBattery, config.setOnBattery)
+        ac_profile = Dropdown(config.getOnAc, config.setOnAc, config.isPerformanceModeAvailable())
+        battery_profile = Dropdown(config.getOnBattery, config.setOnBattery, config.isPerformanceModeAvailable())
 
         grid.attach(wrapCell(profile_label), 0, 1, 1, 1)
         grid.attach(wrapCell(ac_profile.element), 1, 1, 1, 1)

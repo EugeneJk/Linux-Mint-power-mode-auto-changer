@@ -3,12 +3,13 @@ from gi.repository import Gtk # pyright: ignore[reportAttributeAccessIssue]
 from power_mode import PowerMode, PowerModeText, getPowerMode
 from main_window_components.textbox import Textbox
 
-def createDropdown():
+def createDropdown(isPerformanceAvailable: bool):
     combo = Gtk.ComboBoxText()
 
     combo.append(PowerMode.POWER_SAVER.value, PowerModeText.POWER_SAVER.value)
     combo.append(PowerMode.BALANCED.value, PowerModeText.BALANCED.value)
-    combo.append(PowerMode.PERFORMANCE.value, PowerModeText.PERFORMANCE.value)
+    if isPerformanceAvailable :
+        combo.append(PowerMode.PERFORMANCE.value, PowerModeText.PERFORMANCE.value)
 
     combo.set_size_request(180, -1)
 
@@ -19,11 +20,12 @@ class Dropdown:
     def __init__(
         self,
         getVal: Callable[[], PowerMode],
-        setVal: Callable[[PowerMode], None]
+        setVal: Callable[[PowerMode], None],
+        isPerformanceAvailable: bool
     ):
         self.getVal = getVal
         self.setVal = setVal
-        self.element = createDropdown()
+        self.element = createDropdown(isPerformanceAvailable)
         self.element.set_active_id(getVal())
         self.element.connect("changed", self._on_changed)
         
