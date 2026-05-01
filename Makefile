@@ -17,6 +17,7 @@ COMMON_SOURCES := $(shell find $(SRC_DIR) -mindepth 2 -name "*.cpp")
 SERVICE_SOURCE := $(SRC_DIR)/service.cpp
 CLI_SOURCE := $(SRC_DIR)/cli.cpp
 PYTHON_CACHE := deb/usr/lib/power-mode-auto-changer/__pycache__
+PYTHON_CACHE2 := deb/usr/lib/power-mode-auto-changer/main_window_components/__pycache__
 
 all: $(SERVICE_TARGET) $(CLI_TARGET) $(COPY_LANG_TARGET) $(DEB_TARGET)
 
@@ -33,6 +34,7 @@ $(CLI_TARGET):
 
 $(DEB_TARGET):
 	rm $(PYTHON_CACHE)
+	rm $(PYTHON_CACHE2)
 	@SIZE=$$(du -sk deb/ | cut -f1); \
 	sed -i "s/^Installed-Size:.*/Installed-Size: $$SIZE/" deb/DEBIAN/control; \
 	sed -i "s/^Version:.*/Version: $(VERSION)/" deb/DEBIAN/control; \

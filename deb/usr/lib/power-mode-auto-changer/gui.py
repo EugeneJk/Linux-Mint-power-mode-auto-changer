@@ -8,12 +8,10 @@ from config import Config
 
 
 def main():
-    config = Config()
-    win = MainWindow()
+    win = MainWindow(Config())
     win.connect("destroy", Gtk.main_quit)
     win.show_all()
     Gtk.main()
-
 
 if __name__ == "__main__":
     main()

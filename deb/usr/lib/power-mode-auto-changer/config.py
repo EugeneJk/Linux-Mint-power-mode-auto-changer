@@ -23,7 +23,6 @@ class Config:
             exit(F"Error! System config not found: {self.__systemConfigPath}")
         else:
             self.__isPerformanceAvailable = "IS_PERFORMANCE_AVAILABLE" in systemConfig and systemConfig["IS_PERFORMANCE_AVAILABLE"] == '1'
-            print(self.__isPerformanceAvailable);
 
         userConfig = loadConfigFile(self.__configPath)
         if userConfig == None :
@@ -70,12 +69,9 @@ class Config:
             self.__saveConfig()
 
         print(self)
-        # defaultText = self.__defaultText()
-        # print(config["DEFAULT"]["ON_AC"])
-        # print(config["DEFAULT"]["ON_BATTERY"])
-        # print(config["DEFAULT"]["ON_AC_TEXT"])
-        # print(config["DEFAULT"]["ON_BATTERY_TEXT"])
 
+    def getOnAc(self):
+        return self.__onAc
 
     def setOnAc(self, value: str):
         print('set on AC', value)
@@ -94,8 +90,6 @@ ON_BATTERY_TEXT={self.__onBatteryText if self.__onBatteryText else self.__onBatt
         with open(config_path, "w", encoding="utf-8") as f:
             f.write(config)
 
-        print("default config created")        
-    
     def isPerformanceModeAvailable(self):
         return self.__isPerformanceAvailable;
 
