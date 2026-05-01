@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2026-04-29 14:28-0400\n"
-"PO-Revision-Date: 2026-04-29 14:29-0400\n"
+"POT-Creation-Date: 2026-05-01 15:08-0400\n"
+"PO-Revision-Date: 2026-05-01 15:08-0400\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ru\n"
@@ -15,44 +15,48 @@ msgstr ""
 "X-Poedit-SearchPath-0: src\n"
 "X-Poedit-SearchPath-1: deb/usr/lib/power-mode-auto-changer\n"
 
-#: deb/usr/lib/power-mode-auto-changer/main_window.py:9
+#: deb/usr/lib/power-mode-auto-changer/main_window.py:15
 #: src/cli/actions/configure.cpp:25 src/cli/actions/help.cpp:8
 msgid "Power Mode Auto Changer"
 msgstr "Автопереключатель режимов питания"
 
-#: deb/usr/lib/power-mode-auto-changer/main_window.py:22
+#: deb/usr/lib/power-mode-auto-changer/main_window.py:28
 msgid "On A/C power"
 msgstr "От сети"
 
-#: deb/usr/lib/power-mode-auto-changer/main_window.py:23
+#: deb/usr/lib/power-mode-auto-changer/main_window.py:29
 msgid "On battery power"
 msgstr "От батареи"
 
-#: deb/usr/lib/power-mode-auto-changer/main_window.py:30
+#: deb/usr/lib/power-mode-auto-changer/main_window.py:36
 msgid "Profile mode"
 msgstr "Режим питания"
 
-#: deb/usr/lib/power-mode-auto-changer/main_window.py:39
+#: deb/usr/lib/power-mode-auto-changer/main_window.py:45
 #: src/cli/actions/configure.cpp:65 src/cli/actions/configure.cpp:101
 #: src/cli/actions/status.cpp:55 src/cli/actions/status.cpp:70
 msgid "Notification text"
 msgstr "Текст уведомления"
 
-#: deb/usr/lib/power-mode-auto-changer/main_window.py:58
+#: deb/usr/lib/power-mode-auto-changer/main_window.py:66
 msgid "Sync on start up"
 msgstr "Синхронизация при загрузке"
 
-#: deb/usr/lib/power-mode-auto-changer/main_window.py:101
-#: src/common/user-config.cpp:53
-msgid "Power saver"
-msgstr "Энергосбережение"
+#: deb/usr/lib/power-mode-auto-changer/main_window.py:71
+msgid "Sync now"
+msgstr "Синхронизировать"
 
-#: deb/usr/lib/power-mode-auto-changer/main_window.py:102
+#: deb/usr/lib/power-mode-auto-changer/power_mode.py:10
 #: src/common/user-config.cpp:55
 msgid "Balanced"
 msgstr "Сбалансировано"
 
-#: deb/usr/lib/power-mode-auto-changer/main_window.py:103
+#: deb/usr/lib/power-mode-auto-changer/power_mode.py:11
+#: src/common/user-config.cpp:53
+msgid "Power saver"
+msgstr "Энергосбережение"
+
+#: deb/usr/lib/power-mode-auto-changer/power_mode.py:12
 #: src/common/user-config.cpp:57
 msgid "Performance"
 msgstr "Быстродействие"

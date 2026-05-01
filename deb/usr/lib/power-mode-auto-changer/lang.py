@@ -1,7 +1,6 @@
 import gettext
-
-import os
-# Force language for testing
+#Force language for testing
+# import os
 # os.environ["LANG"] = "ru_RU.UTF-8"
 # os.environ["LANGUAGE"] = "ru"
 
