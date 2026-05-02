@@ -1,4 +1,5 @@
 #include "show-notification.hpp"
+#include "is-cinnamon-osd.hpp"
 #include "../common/constants.hpp"
 #include "../common/command.hpp"
 #include <string>
@@ -6,6 +7,7 @@
 #include <vector>
 #include <iostream>
 #include <sys/wait.h>
+#include <syslog.h>
 
 void showCinnamonNotification(const UserInfo &user,
                               const std::string &icon,
@@ -49,8 +51,8 @@ void showCinnamonNotification(const UserInfo &user,
 }
 
 void showDefaultNotification(const UserInfo &user,
-                          const std::string &icon,
-                          const std::string &message)
+                             const std::string &icon,
+                             const std::string &message)
 {
     std::string bus = "unix:path=/run/user/" + user.uid + "/bus";
 
@@ -65,8 +67,7 @@ void showDefaultNotification(const UserInfo &user,
         "-t", "3000",
         "-h", "string:x-canonical-private-synchronous:" + APP_NAME,
         message,
-        APP_NAME
-    };
+        APP_NAME};
 
     std::vector<char *> argv;
     for (auto &s : args)
@@ -88,17 +89,32 @@ void showDefaultNotification(const UserInfo &user,
 
 void showNotification(const UserInfo &user,
                       const std::string &icon,
-                      const std::string &message,
-                      bool isCinnamon
-                    )
+                      const std::string &iconFallback,
+                      const std::string &message)
 {
+    bool isCinnamon = hasCinnamonOSD(user);
 
     if (isCinnamon)
     {
-        showCinnamonNotification(user, icon, message);
+        try
+        {
+            syslog(LOG_INFO, "Showing OSD noticiation ...");
+            showCinnamonNotification(user, icon, message);
+            return;
+        }
+        catch (const std::exception &e)
+        {
+            syslog(LOG_WARNING, "Showing OSD noticiation: failed");
+        }
     }
-    else
+
+    try
     {
-        showDefaultNotification(user, icon, message);
+        syslog(LOG_INFO, "Showing default noticiation ...");
+        showDefaultNotification(user, iconFallback, message);
+    }
+    catch (const std::exception &e)
+    {
+        syslog(LOG_WARNING, "Showing default noticiation: failed");
     }
 }

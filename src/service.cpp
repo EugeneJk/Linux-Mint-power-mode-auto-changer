@@ -53,6 +53,13 @@ int main()
     {
         // get current user info
         UserInfo user = getUser();
+        syslog(LOG_INFO, "User found: %s (%s)", user.name.c_str(), user.uid.c_str());
+
+        if(user.uid == ""){
+            syslog(LOG_INFO, "No user. Do nothing");
+            syslog(LOG_INFO, "Finished");
+            return 0;
+        }
 
         // load user config
         std::string userConfigPath = "/home/" + user.name + "/" + USER_CONFIG_REL;
@@ -61,28 +68,28 @@ int main()
         // load system config
         SystemConfig systemConfig = parceSystemConfig(loadConfig(SYSTEM_CONFIG));
 
-        std::string cinnamonSessionPid = execCommand("pgrep -u " + user.name + " -f cinnamon-session-binary");
-        bool isCinnamon = cinnamonSessionPid != "";
-
         bool isAcOn = isPowerPlugged(systemConfig.acStatusContainer);
 
         // define profile, icon and message to set and display
         std::string displayText;
         std::string newPowerProfile;
         std::string icon;
+        std::string iconFallback;
         if (isAcOn)
         {
             syslog(LOG_INFO, "Power cable is plugged in");
             displayText = userConfig.onAcText;
             newPowerProfile = powerProfileToString(userConfig.onAc);
-            icon = isCinnamon ? ON_AC_ICON : ON_AC_ICON_OTHER;
+            iconFallback = ON_AC_ICON_OTHER;
+            icon = ON_AC_ICON;
         }
         else
         {
             syslog(LOG_INFO, "Power cable is unplugged");
             displayText = userConfig.onBatText;
             newPowerProfile = powerProfileToString(userConfig.onBat);
-            icon = isCinnamon ? ON_BAT_ICON : ON_BAT_ICON_OTHER;
+            iconFallback = ON_BAT_ICON_OTHER;
+            icon = ON_BAT_ICON;
         }
 
         // Get current profile
@@ -92,6 +99,7 @@ int main()
         if (currentPowerProfile == newPowerProfile)
         {
             syslog(LOG_INFO, "Current profile is the same as required (%s) - no action needed.", currentPowerProfile.c_str());
+            syslog(LOG_INFO, "Finished");
             // release lock
             flock(fd, LOCK_UN);
             close(fd);
@@ -107,8 +115,8 @@ int main()
         syslog(LOG_INFO, "Profile after switch: %s", updatedPowerProfile.c_str());
 
         // show notification
-        syslog(LOG_INFO, "Showing %s noticiation", isCinnamon ? "OSD" : "Default");
-        showNotification(user, icon, displayText, isCinnamon);
+        syslog(LOG_INFO, "Showing noticiation");
+        showNotification(user, icon, iconFallback, displayText);
         syslog(LOG_INFO, "Finished");
     }
     catch (const std::exception &ex)
