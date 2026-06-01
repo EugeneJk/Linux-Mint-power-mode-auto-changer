@@ -48,7 +48,7 @@ This will launch the interactive text-mode configurator,
 or run the configuration script directly:
 
 ```shellscript
-power-mode-auto-changer --configure
+power-mode-auto-changer-cli --configure
 ```
 
 You can:
