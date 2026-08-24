@@ -13,7 +13,8 @@ from main_window_components.checkbox import Checkbox
 class MainWindow(Gtk.Window):
     def __init__(self, config: Config):
         super().__init__(title=_("Power Mode Auto Changer"))
-
+        self.set_default_icon_name("preferences-system-power")
+        
         self._setWindowParams()
         setGridStyles()
 

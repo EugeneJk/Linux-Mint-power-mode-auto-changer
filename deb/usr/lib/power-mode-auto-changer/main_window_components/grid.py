@@ -3,13 +3,13 @@ from gi.repository import Gtk, Gdk # pyright: ignore[reportAttributeAccessIssue]
 def setGridStyles():
     css = b"""
     .custom-grid {
-        background-color: white;
-        border: 1px solid #bfbfbf;
+        background-color: @theme_base_color;
+        border: 1px solid @borders;
     }
 
     .frame-cell {
         padding: 10px;
-        border-bottom: 1px solid #d9d9d9;
+        border-bottom: 1px solid shade(@borders, 1.15);;
     }
 
     .last-row {
